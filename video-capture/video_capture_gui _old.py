@@ -1,0 +1,182 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'video_capture_gui.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.0
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(743, 628)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.startRecordBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.startRecordBtn.setGeometry(QtCore.QRect(190, 40, 141, 51))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(239, 41, 41))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(239, 41, 41))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(190, 190, 190))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(239, 41, 41))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        self.startRecordBtn.setPalette(palette)
+        self.startRecordBtn.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.startRecordBtn.setAutoRepeatDelay(298)
+        self.startRecordBtn.setObjectName("startRecordBtn")
+        self.stopRecordBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.stopRecordBtn.setGeometry(QtCore.QRect(380, 40, 141, 51))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(211, 215, 207))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(211, 215, 207))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(190, 190, 190))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(211, 215, 207))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        self.stopRecordBtn.setPalette(palette)
+        self.stopRecordBtn.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.stopRecordBtn.setAutoRepeatDelay(298)
+        self.stopRecordBtn.setObjectName("stopRecordBtn")
+        self.stopRecordBtn.setEnabled(False)
+        self.recordingStatusEdit = QtWidgets.QLineEdit(self.centralwidget)
+        self.recordingStatusEdit.setGeometry(QtCore.QRect(290, 110, 141, 25))
+        self.recordingStatusEdit.setAlignment(QtCore.Qt.AlignCenter)
+        self.recordingStatusEdit.setReadOnly(True)
+        self.recordingStatusEdit.setObjectName("recordingStatusEdit")
+        self.recordingStatusLbl = QtWidgets.QLabel(self.centralwidget)
+        self.recordingStatusLbl.setGeometry(QtCore.QRect(300, 140, 121, 21))
+        self.recordingStatusLbl.setObjectName("recordingStatusLbl")
+        self.camera1ImageLbl = QtWidgets.QLabel(self.centralwidget)
+        self.camera1ImageLbl.setGeometry(QtCore.QRect(30, 170, 331, 321))
+        self.camera1ImageLbl.setFrameShape(QtWidgets.QFrame.Box)
+        self.camera1ImageLbl.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.camera1ImageLbl.setLineWidth(2)
+        self.camera1ImageLbl.setText("")
+        self.camera1ImageLbl.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.camera1ImageLbl.setObjectName("camera1ImageLbl")
+        pixmap = QtGui.QPixmap("camera.jpg") # Setup pixmap with the provided cartoon camera image
+        pixmap = pixmap.scaled(self.camera1ImageLbl.width(), self.camera1ImageLbl.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
+        self.camera1ImageLbl.setPixmap(pixmap) # Set the pixmap onto the label
+        self.camera1ImageLbl.setAlignment(QtCore.Qt.AlignCenter) # Align the label to center
+        self.camera2ImageLbl = QtWidgets.QLabel(self.centralwidget)
+        self.camera2ImageLbl.setGeometry(QtCore.QRect(370, 170, 331, 321))
+        self.camera2ImageLbl.setFrameShape(QtWidgets.QFrame.Box)
+        self.camera2ImageLbl.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.camera2ImageLbl.setLineWidth(2)
+        self.camera2ImageLbl.setText("")
+        self.camera2ImageLbl.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.camera2ImageLbl.setObjectName("camera2ImageLbl")
+        pixmap = pixmap.scaled(self.camera2ImageLbl.width(), self.camera2ImageLbl.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
+        self.camera2ImageLbl.setPixmap(pixmap) # Set the pixmap onto the label
+        self.camera2ImageLbl.setAlignment(QtCore.Qt.AlignCenter) # Align the label to center
+        self.camera2Lbl = QtWidgets.QLabel(self.centralwidget)
+        self.camera2Lbl.setGeometry(QtCore.QRect(490, 490, 71, 21))
+        self.camera2Lbl.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.camera2Lbl.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.camera2Lbl.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.camera2Lbl.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.camera2Lbl.setObjectName("camera2Lbl")
+        self.camera1Lbl = QtWidgets.QLabel(self.centralwidget)
+        self.camera1Lbl.setGeometry(QtCore.QRect(160, 490, 71, 21))
+        self.camera1Lbl.setObjectName("camera1Lbl")
+        self.quitBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.quitBtn.setGeometry(QtCore.QRect(300, 540, 141, 51))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(252, 233, 79))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(0, 0, 0))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(252, 233, 79))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(190, 190, 190))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.WindowText, brush)
+        brush = QtGui.QBrush(QtGui.QColor(252, 233, 79))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        self.quitBtn.setPalette(palette)
+        self.quitBtn.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.quitBtn.setAutoRepeatDelay(298)
+        self.quitBtn.setObjectName("quitBtn")
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 743, 22))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.startRecordBtn.clicked.connect(self.startRecord)
+        self.stopRecordBtn.clicked.connect(self.stopRecord)
+        self.quitBtn.clicked.connect(self.quit)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "OperVu Video Capture"))
+        self.startRecordBtn.setText(_translate("MainWindow", "Start Recording"))
+        self.stopRecordBtn.setText(_translate("MainWindow", "Stop Recording"))
+        self.recordingStatusLbl.setText(_translate("MainWindow", "Recording Status"))
+        self.camera2Lbl.setText(_translate("MainWindow", "Camera 2"))
+        self.camera1Lbl.setText(_translate("MainWindow", "Camera 1"))
+        self.quitBtn.setText(_translate("MainWindow", "Quit"))
+
+    def startRecord(self):
+        self.startRecordBtn.setEnabled(False)
+        self.stopRecordBtn.setEnabled(True)
+        self.recordingStatusEdit.setText("Recording...")
+
+    def stopRecord(self):
+        self.stopRecordBtn.setEnabled(False)
+        self.startRecordBtn.setEnabled(True)
+        self.recordingStatusEdit.setText("Stopped")
+
+    def quit(self):
+        app.quit()
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

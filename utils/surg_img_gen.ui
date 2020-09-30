@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>2000</width>
+    <height>1000</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="saveImageLabel">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>1</y>
+      <width>900</width>
+      <height>900</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>3</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="compareImageLabel">
+    <property name="geometry">
+     <rect>
+      <x>901</x>
+      <y>1</y>
+      <width>900</width>
+      <height>900</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <property name="lineWidth">
+     <number>3</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveButton">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="palette">
+     <palette>
+      <active>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>115</red>
+          <green>210</green>
+          <blue>22</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </active>
+      <inactive>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>115</red>
+          <green>210</green>
+          <blue>22</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </inactive>
+      <disabled>
+       <colorrole role="Button">
+        <brush brushstyle="SolidPattern">
+         <color alpha="255">
+          <red>115</red>
+          <green>210</green>
+          <blue>22</blue>
+         </color>
+        </brush>
+       </colorrole>
+      </disabled>
+     </palette>
+    </property>
+    <property name="text">
+     <string>Save</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rewindButton">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RWD</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rewindButton_10">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RWD10</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rewindButton_20">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RWD20</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rewindButton_50">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RWD50</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="rewindButton_100">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>RWD100</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="forwardButton">
+    <property name="geometry">
+     <rect>
+      <x>960</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>FWD</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="forwardButton_10">
+    <property name="geometry">
+     <rect>
+      <x>1070</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>FWD10</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="forwardButton_20">
+    <property name="geometry">
+     <rect>
+      <x>1180</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>FWD20</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="forwardButton_50">
+    <property name="geometry">
+     <rect>
+      <x>1290</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>FWD50</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="forwardButton_100">
+    <property name="geometry">
+     <rect>
+      <x>1400</x>
+      <y>910</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>FWD100</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="frameNumberEdit">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>910</y>
+      <width>113</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="goToFrameButton">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>910</y>
+      <width>40</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>GO</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="framNumberLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>940</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Current Frame</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="fileNumberEdit">
+    <property name="geometry">
+     <rect>
+      <x>1620</x>
+      <y>910</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="fileNumberLabel">
+    <property name="geometry">
+     <rect>
+      <x>1616</x>
+      <y>930</y>
+      <width>91</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>File Number</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2000</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
