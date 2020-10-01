@@ -320,7 +320,8 @@ class CameraControl(threading.Thread):
                     self.st_devices.append(st_device)
                 except:
                     if len(self.st_devices) == 0:
-                        raise
+                        logging.error("ERROR: No camera detected.")
+                        exit()
                     break
 
                 # Display the DisplayName of the device.

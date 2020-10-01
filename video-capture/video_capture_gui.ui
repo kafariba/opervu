@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1077</width>
-    <height>645</height>
+    <width>1863</width>
+    <height>918</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="recordBtn">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>50</y>
+      <x>1040</x>
+      <y>54</y>
       <width>141</width>
       <height>51</height>
      </rect>
@@ -100,8 +100,8 @@
    <widget class="QPushButton" name="stopBtn">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>50</y>
+      <x>860</x>
+      <y>54</y>
       <width>141</width>
       <height>51</height>
      </rect>
@@ -183,8 +183,8 @@
    <widget class="QLineEdit" name="recordingStatusEdit">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>110</y>
+      <x>860</x>
+      <y>120</y>
       <width>141</width>
       <height>25</height>
      </rect>
@@ -199,8 +199,8 @@
    <widget class="QLabel" name="recordingStatusLbl">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>130</y>
+      <x>870</x>
+      <y>140</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -212,10 +212,10 @@
    <widget class="QLabel" name="camera1ImageLbl">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>170</y>
-      <width>331</width>
-      <height>321</height>
+      <x>20</x>
+      <y>180</y>
+      <width>600</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -237,10 +237,10 @@
    <widget class="QLabel" name="camera2ImageLbl">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>170</y>
-      <width>331</width>
-      <height>321</height>
+      <x>630</x>
+      <y>180</y>
+      <width>600</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -262,9 +262,9 @@
    <widget class="QLabel" name="camera2Lbl">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>490</y>
-      <width>311</width>
+      <x>630</x>
+      <y>780</y>
+      <width>601</width>
       <height>21</height>
      </rect>
     </property>
@@ -290,9 +290,9 @@
    <widget class="QLabel" name="camera1Lbl">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>490</y>
-      <width>331</width>
+      <x>20</x>
+      <y>780</y>
+      <width>601</width>
       <height>21</height>
      </rect>
     </property>
@@ -306,8 +306,8 @@
    <widget class="QPushButton" name="quitBtn">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>530</y>
+      <x>860</x>
+      <y>830</y>
       <width>141</width>
       <height>51</height>
      </rect>
@@ -389,8 +389,8 @@
    <widget class="QPushButton" name="previewBtn">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>50</y>
+      <x>680</x>
+      <y>54</y>
       <width>141</width>
       <height>51</height>
      </rect>
@@ -472,10 +472,10 @@
    <widget class="QLabel" name="camera3ImageLbl">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>170</y>
-      <width>331</width>
-      <height>321</height>
+      <x>1240</x>
+      <y>180</y>
+      <width>600</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -497,9 +497,9 @@
    <widget class="QLabel" name="camera3Lbl">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>490</y>
-      <width>311</width>
+      <x>1240</x>
+      <y>780</y>
+      <width>601</width>
       <height>21</height>
      </rect>
     </property>
@@ -525,8 +525,8 @@
    <widget class="QSpinBox" name="recordSpinBox">
     <property name="geometry">
      <rect>
-      <x>810</x>
-      <y>60</y>
+      <x>1210</x>
+      <y>64</y>
       <width>48</width>
       <height>26</height>
      </rect>
@@ -547,8 +547,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>56</y>
+      <x>1260</x>
+      <y>60</y>
       <width>161</width>
       <height>31</height>
      </rect>
@@ -563,7 +563,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1077</width>
+     <width>1863</width>
      <height>22</height>
     </rect>
    </property>
