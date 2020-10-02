@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name[en_US]=OperVu Video
+Comment[en_US]=Video Capture
+Exec=/home/kamiar/projects/opervu/video-capture/video_capture_gui.sh
+Path=/home/kamiar/projects/opervu/video-capture/
+Icon=/home/kamiar/projects/opervu/video-capture/vid-cam.png
+Terminal=false
+Type=Application
+Categories=Application
+StartupNotify=true

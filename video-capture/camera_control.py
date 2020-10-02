@@ -31,7 +31,7 @@ video_files_count = 4
 # preview interval in set_cam_state
 rec_preview_interval_sec = 3.0
 
-VIDEO_CAPTURE_PATH = "/home/kamiar/projects/opervu/video-capture"
+VIDEO_CAPTURE_PATH = "/media/kamiar/LaCie/"
 
 CAMERA_1_ID = "STC_CMC4MPOE(17C1935)"
 CAMERA_2_ID = "STC_CMC4MPOE(17C1937)"
