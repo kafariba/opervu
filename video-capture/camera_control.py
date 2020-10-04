@@ -26,7 +26,7 @@ number_of_images_to_grab = 300
 maximum_frame_count_per_file = 200
 
 # Number of video files
-video_files_count = 4
+video_files_count = 50
 
 # preview interval in set_cam_state
 rec_preview_interval_sec = 3.0

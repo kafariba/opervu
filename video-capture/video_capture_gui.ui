@@ -183,9 +183,9 @@
    <widget class="QLineEdit" name="recordingStatusEdit">
     <property name="geometry">
      <rect>
-      <x>860</x>
+      <x>830</x>
       <y>120</y>
-      <width>141</width>
+      <width>201</width>
       <height>25</height>
      </rect>
     </property>

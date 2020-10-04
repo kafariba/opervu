@@ -13,6 +13,7 @@ from queue import Queue
 from threading import Thread
 import camera_control
 import shutil
+import time
 
 STOP_CMND = "StopCmnd"
 RECORD_CMND = "RecordCmnd"
@@ -81,7 +82,7 @@ class Ui_MainWindow(object):
         self.stopBtn.setAutoRepeatDelay(298)
         self.stopBtn.setObjectName("stopBtn")
         self.recordingStatusEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.recordingStatusEdit.setGeometry(QtCore.QRect(860, 120, 141, 25))
+        self.recordingStatusEdit.setGeometry(QtCore.QRect(800, 120, 261, 25))
         self.recordingStatusEdit.setAlignment(QtCore.Qt.AlignCenter)
         self.recordingStatusEdit.setReadOnly(True)
         self.recordingStatusEdit.setObjectName("recordingStatusEdit")
@@ -186,7 +187,7 @@ class Ui_MainWindow(object):
         self.recordSpinBox.setGeometry(QtCore.QRect(1210, 64, 48, 26))
         self.recordSpinBox.setMaximum(10)
         self.recordSpinBox.setSingleStep(1)
-        self.recordSpinBox.setProperty("value", 2)
+        self.recordSpinBox.setProperty("value", 5)
         self.recordSpinBox.setDisplayIntegerBase(10)
         self.recordSpinBox.setObjectName("recordSpinBox")
         self.label = QtWidgets.QLabel(self.centralwidget)
@@ -237,15 +238,25 @@ class Ui_MainWindow(object):
         self.previewBtn.setText(_translate("MainWindow", "Live Preview"))
         self.camera3Lbl.setText(_translate("MainWindow", "Camera 3"))
         self.label.setText(_translate("MainWindow", "Record Time (hours)"))
-        self.recordingStatusEdit.setText("Stopped")
+
+        disk_usage = shutil.disk_usage('/media/kamiar/LaCie')
+        if disk_usage.free < 100_000_000_000:
+            self.recordingStatusEdit.setText("External drive full!! EJECT & replace.")
+            self.previewBtn.setEnabled(False)
+            self.recordBtn.setEnabled(False)
+            self.stopBtn.setEnabled(False)
+        else:
+            self.recordingStatusEdit.setText("Stopped")
 
     def record(self):
         self.recordBtn.setEnabled(False)
         self.previewBtn.setEnabled(False)
         self.quitBtn.setEnabled(False)
         self.stopBtn.setEnabled(True)
-        self.recordingStatusEdit.setText("Recording...")
+        self.recStSec = time.time()
+        self.recordingStatusEdit.setText("Recording...   {:2.0%}".format(0.0))
         recTime = self.recordSpinBox.value()
+        self.recTimeSec = recTime * 3600
         self.cur_cmnd = RECORD_CMND
         while not status_q.empty():
             status_q.get()
@@ -275,6 +286,9 @@ class Ui_MainWindow(object):
         if images == STOP_CMND:
             self.stop()
             return
+
+        self.recordingStatusEdit.setText("Recording...   {:2.0%}".
+                    format((time.time() - self.recStSec)/self.recTimeSec))
 
         num_cameras = len(images)
         qimg = QtGui.QImage(images[0].get_image_data(),images[0].width,
