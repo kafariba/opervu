@@ -10,573 +10,765 @@
     <height>1967</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1913</width>
+    <height>16777215</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Simple SI Tracker</string>
+   <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="startButton">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>10</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>START</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="nextButton">
-    <property name="geometry">
-     <rect>
-      <x>910</x>
-      <y>900</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>NEXT</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="image1">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>70</y>
-      <width>800</width>
-      <height>800</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <property name="lineWidth">
-     <number>2</number>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="image2">
-    <property name="geometry">
-     <rect>
-      <x>1010</x>
-      <y>70</y>
-      <width>800</width>
-      <height>800</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Plain</enum>
-    </property>
-    <property name="lineWidth">
-     <number>2</number>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>870</y>
-      <width>801</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Previous Frame</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>1010</x>
-      <y>870</y>
-      <width>801</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Current Frame</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="prevSI">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>970</y>
-      <width>131</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>Obstruction</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="quitButton">
-    <property name="geometry">
-     <rect>
-      <x>900</x>
-      <y>1610</y>
-      <width>91</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>QUIT</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>950</y>
-      <width>131</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>SI</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="prevTrkID">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>970</y>
-      <width>41</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>0001</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="prevVelAct">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>970</y>
-      <width>101</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>[2000, 2000]</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="prevBBox">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>970</y>
-      <width>181</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>[2000, 2000, 2000, 2000]</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="prevScore">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>970</y>
-      <width>41</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>0.99</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>950</y>
-      <width>41</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Trk ID</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_7">
-    <property name="geometry">
-     <rect>
-      <x>630</x>
-      <y>950</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Actual Velocity</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>950</y>
-      <width>181</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>BBox [x1, y1, x2, y2]</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>470</x>
-      <y>950</y>
-      <width>41</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Score</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="nextTrkID">
-    <property name="geometry">
-     <rect>
-      <x>1150</x>
-      <y>970</y>
-      <width>41</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>0001</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>1150</x>
-      <y>950</y>
-      <width>41</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Trk ID</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="nextBBox">
-    <property name="geometry">
-     <rect>
-      <x>1200</x>
-      <y>970</y>
-      <width>181</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>[2000, 2000, 2000, 2000]</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="nextActVel">
-    <property name="geometry">
-     <rect>
-      <x>1550</x>
-      <y>970</y>
-      <width>101</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>[2000, 2000]</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_11">
-    <property name="geometry">
-     <rect>
-      <x>1390</x>
-      <y>950</y>
-      <width>41</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Score</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="nextSI">
-    <property name="geometry">
-     <rect>
-      <x>1010</x>
-      <y>970</y>
-      <width>131</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>Obstruction</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_12">
-    <property name="geometry">
-     <rect>
-      <x>1550</x>
-      <y>950</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Actual Velocity</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="nextScore">
-    <property name="geometry">
-     <rect>
-      <x>1390</x>
-      <y>970</y>
-      <width>41</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>0.99</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_13">
-    <property name="geometry">
-     <rect>
-      <x>1010</x>
-      <y>950</y>
-      <width>131</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>SI</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_14">
-    <property name="geometry">
-     <rect>
-      <x>1200</x>
-      <y>950</y>
-      <width>181</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>BBox [x1, y1, x2, y2]</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="prevCenter">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>970</y>
-      <width>101</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>[2000, 2000]</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_15">
-    <property name="geometry">
-     <rect>
-      <x>520</x>
-      <y>950</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Center</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="prevVelEst">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>970</y>
-      <width>101</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>[2000, 2000]</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_16">
-    <property name="geometry">
-     <rect>
-      <x>740</x>
-      <y>950</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Estim. Velocity</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="nextCenter">
-    <property name="geometry">
-     <rect>
-      <x>1440</x>
-      <y>970</y>
-      <width>101</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>[2000, 2000]</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_17">
-    <property name="geometry">
-     <rect>
-      <x>1440</x>
-      <y>950</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Center</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="nextEstVel">
-    <property name="geometry">
-     <rect>
-      <x>1660</x>
-      <y>970</y>
-      <width>101</width>
-      <height>621</height>
-     </rect>
-    </property>
-    <property name="documentTitle">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>[2000, 2000]</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_18">
-    <property name="geometry">
-     <rect>
-      <x>1660</x>
-      <y>950</y>
-      <width>101</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Estim. Velocity</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <property name="bottomMargin">
+     <number>10</number>
+    </property>
+    <property name="spacing">
+     <number>5</number>
+    </property>
+    <item row="0" column="1">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>1891</width>
+         <height>1901</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <property name="leftMargin">
+         <number>5</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>5</number>
+        </property>
+        <property name="bottomMargin">
+         <number>5</number>
+        </property>
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item row="0" column="1">
+         <widget class="QLabel" name="image1">
+          <property name="minimumSize">
+           <size>
+            <width>800</width>
+            <height>800</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>800</width>
+            <height>800</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="4">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="1" column="1">
+            <widget class="QTextBrowser" name="nextTrkID">
+             <property name="minimumSize">
+              <size>
+               <width>44</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>44</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_26">
+             <property name="minimumSize">
+              <size>
+               <width>181</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>181</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>BBox[x1,y1,x2,y2]</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_4">
+             <property name="minimumSize">
+              <size>
+               <width>131</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>131</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>SI</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_27">
+             <property name="minimumSize">
+              <size>
+               <width>44</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>44</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Trk ID</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="label_28">
+             <property name="minimumSize">
+              <size>
+               <width>41</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>41</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Score</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="7">
+            <widget class="QLabel" name="label_29">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Estim. Velocity</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QLabel" name="label_30">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Actual Velocity</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="label_31">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Center</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QTextBrowser" name="nextScore">
+             <property name="minimumSize">
+              <size>
+               <width>41</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>41</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="7">
+            <widget class="QTextBrowser" name="nextVelEst">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QTextBrowser" name="nextSI">
+             <property name="minimumSize">
+              <size>
+               <width>131</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>131</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QTextBrowser" name="nextBBox">
+             <property name="minimumSize">
+              <size>
+               <width>181</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>181</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QTextBrowser" name="nextCenter">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="5">
+            <widget class="QTextBrowser" name="nextVelAct">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLabel" name="image2">
+          <property name="minimumSize">
+           <size>
+            <width>800</width>
+            <height>800</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>800</width>
+            <height>800</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="1" column="0">
+            <widget class="QPushButton" name="nextButton">
+             <property name="minimumSize">
+              <size>
+               <width>91</width>
+               <height>41</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>91</width>
+               <height>41</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>NEXT</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="startButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>91</horstretch>
+               <verstretch>41</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>91</width>
+               <height>41</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>START</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QPushButton" name="quiteButton">
+             <property name="minimumSize">
+              <size>
+               <width>91</width>
+               <height>41</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>91</width>
+               <height>41</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>QUIT</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="4" column="1" rowspan="2">
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="1" column="1">
+            <widget class="QTextBrowser" name="prevTrkID">
+             <property name="minimumSize">
+              <size>
+               <width>44</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>44</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_7">
+             <property name="minimumSize">
+              <size>
+               <width>181</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>181</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>BBox[x1,y1,x2,y2]</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="minimumSize">
+              <size>
+               <width>131</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>131</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>SI</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_6">
+             <property name="minimumSize">
+              <size>
+               <width>44</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>44</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Trk ID</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="label_8">
+             <property name="minimumSize">
+              <size>
+               <width>41</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>41</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Score</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="7">
+            <widget class="QLabel" name="label_11">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Estim. Velocity</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="5">
+            <widget class="QLabel" name="label_10">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Actual Velocity</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="4">
+            <widget class="QLabel" name="label_9">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Center</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QTextBrowser" name="prevScore">
+             <property name="minimumSize">
+              <size>
+               <width>41</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>41</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="7">
+            <widget class="QTextBrowser" name="prevVelEst">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QTextBrowser" name="prevSI">
+             <property name="minimumSize">
+              <size>
+               <width>131</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>131</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QTextBrowser" name="prevBBox">
+             <property name="minimumSize">
+              <size>
+               <width>181</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>181</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QTextBrowser" name="prevCenter">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="5">
+            <widget class="QTextBrowser" name="prevVelAct">
+             <property name="minimumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>101</width>
+               <height>621</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QLabel" name="label_32">
+          <property name="text">
+           <string>Next Frame</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Previous Frame</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

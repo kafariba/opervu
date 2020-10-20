@@ -1,18 +1,23 @@
+#!/usr/bin/python3
+
+
 # import keras
-import keras
+from tensorflow import keras
 
 # import keras_retinanet
 from keras_retinanet import models
 from keras_retinanet.utils.image import read_image_bgr, preprocess_image, resize_image
 from keras_retinanet.utils.visualization import draw_box, draw_caption
 from keras_retinanet.utils.colors import label_color
+from keras_retinanet.utils.gpu import setup_gpu
 
 # import miscellaneous modules
 import matplotlib.pyplot as plt
 import cv2
 import os
-import math
 import numpy as np
+import time
+import math
 from PIL import Image
 
 # set tf backend to allow memory to grow, instead of claiming everything
@@ -21,13 +26,11 @@ import tensorflow as tf
 # The linear sum assignment problem is also known as minimum weight matching in bipartite graphs
 from scipy.optimize import linear_sum_assignment
 
-def get_session():
-    config = tf.ConfigProto()
-    config.gpu_options.allow_growth = True
-    return tf.Session(config=config)
+# use this to change which GPU to use
+gpu = '0'
 
 # set the modified tf session as backend in keras
-keras.backend.tensorflow_backend.set_session(get_session())
+setup_gpu(gpu)
 
 # adjust this to point to your downloaded/trained model
 model_path = '/home/kamiar/projects/opervu/inference/model.h5'
