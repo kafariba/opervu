@@ -19,6 +19,7 @@ import numpy as np
 import time
 import math
 from PIL import Image
+from collections import deque
 
 # set tf backend to allow memory to grow, instead of claiming everything
 import tensorflow as tf
@@ -58,6 +59,22 @@ labels_to_names = {0: 'forceps',
 11: 'obstruction',
 12: 'bovie'}
 
+# name to label mapping
+names_to_labels = {'forceps': 0,
+'clamp': 1,
+'scalpel': 2,
+'sponge': 3,
+'gauze': 4,
+'woods pack': 5,
+'needle': 6,
+'needle holder': 7,
+'sucker': 8,
+'glove': 9,
+'incision': 10,
+'obstruction': 11,
+'bovie': 12}
+
+# minimum confidence score for each detected label
 min_SI_scores = {0: 0.5,
 1: 0.5,
 2: 0.45,
@@ -78,6 +95,17 @@ frames_ptr = 0
 frame = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]}
 for i in range(10):
     frames.append(frame)
+
+# exp weighted avg constant ~ 5 frame avg
+BETA = 0.8
+
+# init value for exp wgt avg
+ewa_init_box = np.array([0, 0, 0, 0])
+
+# incision ewa box
+incision_ewa_box = ewa_init_box.copy()
+
+incision_q = deque(maxlen=300)
 
 # indicator for very first frames
 first_frame = True
@@ -129,12 +157,16 @@ def predict_first():
                 if score < min_SI_scores[label]:
                     break
 
-                i_box = [int(box[0]), int(box[1]), int(box[2]), int(box[3])]
+                i_box = np.array([int(box[0]), int(box[1]), int(box[2]), int(box[3])])
                 i_center = box_center(i_box)
                 i_score = int(score * 100)
-                # max vel(Vx,Vy) = +/- 300-400 pix per o.1 sec
-                frame[label].append({'id': -1, 'link_id': -1, 'link_cnt': 0, 'box':i_box, 'scr':i_score,
-                     'cen':i_center, 'vel-est':[float('nan'), float('nan')], 'vel-act':[float('nan'), float('nan')]})
+
+                # for incision calc exp wgt avg (ewa) and put into cirular buf(300)
+
+                # max vel(Vx,Vy) = +/- 300-400 pix per 0.1 sec
+                frame[label].append({'id': -1, 'trk_cnt': 0, 'link_id': -1, 'link_cnt': 0, 'box':i_box,
+                                        'box_ewa':ewa_init_box, 'scr':i_score, 'cen':i_center,
+                                        'vel-est':[float('nan'), float('nan')], 'vel-act':[float('nan'), float('nan')]})
 
                 color = label_color(label)
 
@@ -154,6 +186,7 @@ def predict_first():
                 frames_ptr = 0
             frames[frames_ptr] = frame
 
+            # assign id/link id: correlate SIs from consecutive frames, link enclosing SIs (glove & forceps)
             track_SIs()
 
             pred_info = {'si':'', 'id':'', 'box':'', 'scr':'', 'cen':'', 'vel-est':'', 'vel-act':''}
@@ -161,7 +194,7 @@ def predict_first():
             for si in frames[frames_ptr]:
                 for si_item in frames[frames_ptr][si]:
                     pred_info['si'] += "{}\n".format(labels_to_names[si])
-                    pred_info['id'] += "{}\n".format(si_item['id'])
+                    pred_info['id'] += "{}:{}:{}\n".format(si_item['id'], si_item['link_id'], si_item['link_cnt'])
                     pred_info['box'] += "[{:4d}, {:4d}, {:4d}, {:4d}]\n".format(si_item['box'][0], si_item['box'][1], si_item['box'][2], si_item['box'][3])
                     pred_info['scr'] += "{:3d}\n".format(si_item['scr'])
                     pred_info['cen'] += "[{:3d}, {:3d}]\n".format(si_item['cen'][0], si_item['cen'][1])
@@ -254,8 +287,32 @@ def track_SIs():
                 id_counter += 1
         return
 
+
+
     for si in frames[frames_ptr].keys():
-        # for each SI
+        # not tracking incision
+        if si == names_to_labels['incision']:
+            # for incision calculate ewa, if q len > 10 put ewa into q else
+            # put inciscion box into q and save ewa
+            # if no incision det, pop from q, if len of q = 0, no incision
+            if len(frames[frames_ptr][names_to_labels['incision']]) > 0:
+                incision_ewa_box = BETA * incision_ewa_box + (1 - BETA) *
+                                    frames[frames_ptr][names_to_labels['incision']][0]
+                if len(incision_q) > 10:
+                    incision_q.append(incision_ewa_box)
+                else:
+                    incision_q.append(frames[frames_ptr][names_to_labels['incision']][0]['box'])
+            else:
+                # no incision detected, if q len > 0, pop q
+                if len(incision_q) > 0:
+                    incision_q.pop()
+                else:
+                    # q empty, reset ewa
+                    if np.count_nonzero(incision_ewa_box):
+                        incision_ewa_box = ewa_init_box.copy()
+            continue
+
+        # for each SI other than incision
         if len(frames[frames_ptr][si]) == 0:
             # no SI
             continue
@@ -275,6 +332,11 @@ def track_SIs():
                     frames[frames_ptr][si][0]['link_cnt'] = frames[frames_ptr - 1][si][0]['link_cnt']
                     frames[frames_ptr][si][0]['vel-est'] = frames[frames_ptr - 1][si][0]['vel-act']
                     frames[frames_ptr][si][0]['vel-act'] = vel
+
+                    frames[frames_ptr][si][0]['trk_cnt'] = frames[frames_ptr - 1][si][0]['trk_cnt'] + 1
+                    # calc ewa
+                    frames[frames_ptr][si][0]['box_ewa'] = BETA * frames[frames_ptr - 1][si][0]['box_ewa'] +
+                                                        (1 - BETA) * frames[frames_ptr][si][0]['box']
                 else:
                     # new SI
                     frames[frames_ptr][si][0]['id'] = id_counter
@@ -291,22 +353,27 @@ def track_SIs():
                     frames[frames_ptr][si][cur_i]['link_cnt'] = frames[frames_ptr - 1][si][prev_i]['link_cnt']
                     frames[frames_ptr][si][cur_i]['vel-est'] = frames[frames_ptr - 1][si][prev_i]['vel-act']
                     frames[frames_ptr][si][cur_i]['vel-act'] = vel
+
+                    frames[frames_ptr][si][0]['trk_cnt'] = frames[frames_ptr - 1][si][0]['trk_cnt'] + 1
+                    # calc ewa
+                    frames[frames_ptr][si][0]['box_ewa'] = BETA * frames[frames_ptr - 1][si][0]['box_ewa'] +
+                                                        (1 - BETA) * frames[frames_ptr][si][0]['box']
                 else:
                     # new SI
                     frames[frames_ptr][si][cur_i]['id'] = id_counter
                     id_counter += 1
 
-        for si in [0, 1, 2, 7, 8, 12]:
-            # for forceps, clamps, scalpels, needle holders, suckers, and bovie
-            # link a grasping glove for better tracking
+        for si in [names_to_labels['forceps'], names_to_labels['clamp'], names_to_labels['scalpel'],
+                    names_to_labels['needle holder'], names_to_labels['suckers'], names_to_labels['bovie']]:
+            # for these SI's, link a grasping glove for better tracking
             if len(frames[frames_ptr][si]) > 0:
                 # if forceps detected, find closest glove
                 for i in range(len(frames[frames_ptr][si])):
-                    # for each forceps
+                    # for each SI
                     glove = closest_glove(frames[frames_ptr][si][i])
                     g_ioa = calc_ioa(glove['box'], frames[frames_ptr][si][i]['box'])
                     if g_ioa > 0.1:
-                        # forceps in grasp of glove, link them if not, else inc cnt
+                        # SI in grasp of glove, link them if not, else inc cnt
                         if frames[frames_ptr][si][i]['link_id'] == -1 or
                                 frames[frames_ptr][si][i]['link_id'] !=  glove['link_id']:
                             frames[frames_ptr][si][i]['link_id'] = glove['link_id']
