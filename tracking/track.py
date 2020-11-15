@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 import predict
 
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -101,11 +102,11 @@ class Ui_MainWindow(object):
         self.nextScore.setMaximumSize(QtCore.QSize(41, 621))
         self.nextScore.setObjectName("nextScore")
         self.gridLayout_6.addWidget(self.nextScore, 1, 3, 1, 1)
-        self.nextVelEst = QtWidgets.QTextBrowser(self.groupBox_3)
-        self.nextVelEst.setMinimumSize(QtCore.QSize(101, 621))
-        self.nextVelEst.setMaximumSize(QtCore.QSize(101, 621))
-        self.nextVelEst.setObjectName("nextVelEst")
-        self.gridLayout_6.addWidget(self.nextVelEst, 1, 7, 1, 1)
+        self.nextMisc = QtWidgets.QTextBrowser(self.groupBox_3)
+        self.nextMisc.setMinimumSize(QtCore.QSize(101, 621))
+        self.nextMisc.setMaximumSize(QtCore.QSize(101, 621))
+        self.nextMisc.setObjectName("nextMisc")
+        self.gridLayout_6.addWidget(self.nextMisc, 1, 7, 1, 1)
         self.nextSI = QtWidgets.QTextBrowser(self.groupBox_3)
         self.nextSI.setMinimumSize(QtCore.QSize(131, 621))
         self.nextSI.setMaximumSize(QtCore.QSize(131, 621))
@@ -218,11 +219,11 @@ class Ui_MainWindow(object):
         self.prevScore.setMaximumSize(QtCore.QSize(41, 621))
         self.prevScore.setObjectName("prevScore")
         self.gridLayout_3.addWidget(self.prevScore, 1, 3, 1, 1)
-        self.prevVelEst = QtWidgets.QTextBrowser(self.groupBox)
-        self.prevVelEst.setMinimumSize(QtCore.QSize(101, 621))
-        self.prevVelEst.setMaximumSize(QtCore.QSize(101, 621))
-        self.prevVelEst.setObjectName("prevVelEst")
-        self.gridLayout_3.addWidget(self.prevVelEst, 1, 7, 1, 1)
+        self.prevMisc = QtWidgets.QTextBrowser(self.groupBox)
+        self.prevMisc.setMinimumSize(QtCore.QSize(101, 621))
+        self.prevMisc.setMaximumSize(QtCore.QSize(101, 621))
+        self.prevMisc.setObjectName("prevMisc")
+        self.gridLayout_3.addWidget(self.prevMisc, 1, 7, 1, 1)
         self.prevSI = QtWidgets.QTextBrowser(self.groupBox)
         self.prevSI.setMinimumSize(QtCore.QSize(131, 621))
         self.prevSI.setMaximumSize(QtCore.QSize(131, 621))
@@ -277,8 +278,8 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "SI"))
         self.label_27.setText(_translate("MainWindow", "Trk ID"))
         self.label_28.setText(_translate("MainWindow", "Score"))
-        self.label_29.setText(_translate("MainWindow", "Estim. Velocity"))
-        self.label_30.setText(_translate("MainWindow", "Actual Velocity"))
+        self.label_29.setText(_translate("MainWindow", "CenP/LnID/LnCt"))
+        self.label_30.setText(_translate("MainWindow", "Velocity"))
         self.label_31.setText(_translate("MainWindow", "Center"))
         self.nextButton.setText(_translate("MainWindow", "NEXT"))
         self.startButton.setText(_translate("MainWindow", "START"))
@@ -287,28 +288,27 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "SI"))
         self.label_6.setText(_translate("MainWindow", "Trk ID"))
         self.label_8.setText(_translate("MainWindow", "Score"))
-        self.label_11.setText(_translate("MainWindow", "Estim. Velocity"))
-        self.label_10.setText(_translate("MainWindow", "Actual Velocity"))
+        self.label_11.setText(_translate("MainWindow", "CenP/LnID/LnCt"))
+        self.label_10.setText(_translate("MainWindow", "Velocity"))
         self.label_9.setText(_translate("MainWindow", "Center"))
         self.label_32.setText(_translate("MainWindow", "Next Frame"))
         self.label.setText(_translate("MainWindow", "Previous Frame"))
-
 
     def start(self):
         self.startButton.setEnabled(False)
         self.nextButton.setEnabled(True)
         image, pred_info = predict.predict_first()
-        qimg = QtGui.QImage(image,image.shape[0],image.shape[1], QtGui.QImage.Format_RGB888)
+        qimg = QtGui.QImage(image, image.shape[0], image.shape[1], QtGui.QImage.Format_RGB888)
         pixmap = QtGui.QPixmap(qimg)
-        pixmap = pixmap.scaled(self.image2.width(), self.image2.height(), QtCore.Qt.KeepAspectRatio) # Scale pixmap
-        self.image2.setPixmap(pixmap) # Set the pixmap onto the label
+        pixmap = pixmap.scaled(self.image2.width(), self.image2.height(), QtCore.Qt.KeepAspectRatio)  # Scale pixmap
+        self.image2.setPixmap(pixmap)  # Set the pixmap onto the label
         self.nextSI.setText(pred_info['si'])
         self.nextTrkID.setText(pred_info['id'])
         self.nextBBox.setText(pred_info['box'])
         self.nextScore.setText(pred_info['scr'])
         self.nextCenter.setText(pred_info['cen'])
-        self.nextVelEst.setText(pred_info['vel-est'])
-        self.nextVelAct.setText(pred_info['vel-act'])
+        self.nextVelAct.setText(pred_info['vel'])
+        self.nextMisc.setText('misc')
 
     def next(self):
         qimg = self.image2.pixmap()
@@ -318,13 +318,14 @@ class Ui_MainWindow(object):
         self.prevBBox.setText(self.nextBBox.toPlainText())
         self.prevScore.setText(self.nextScore.toPlainText())
         self.prevCenter.setText(self.nextCenter.toPlainText())
-        self.prevVelEst.setText(self.nextVelEst.toPlainText())
         self.prevVelAct.setText(self.nextVelAct.toPlainText())
+        self.prevMisc.setText(self.nextMisc.toPlainText())
         self.start()
 
     def quit(self):
         predict.quit()
         app.quit()
+
 
 if __name__ == "__main__":
     import sys
