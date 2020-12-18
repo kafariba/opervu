@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'track.ui'
@@ -17,7 +16,7 @@ import predict
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1913, 1967)
+        MainWindow.resize(1913, 1641)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
         MainWindow.setMaximumSize(QtCore.QSize(1913, 16777215))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -30,12 +29,111 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1891, 1901))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1891, 1575))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_2.setContentsMargins(5, 5, 5, 5)
         self.gridLayout_2.setSpacing(10)
         self.gridLayout_2.setObjectName("gridLayout_2")
+        self.groupBox = QtWidgets.QGroupBox(self.scrollAreaWidgetContents)
+        self.groupBox.setTitle("")
+        self.groupBox.setObjectName("groupBox")
+        self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox)
+        self.gridLayout_3.setContentsMargins(0, -1, 0, -1)
+        self.gridLayout_3.setSpacing(0)
+        self.gridLayout_3.setObjectName("gridLayout_3")
+        self.prevTrkID = QtWidgets.QTextBrowser(self.groupBox)
+        self.prevTrkID.setMinimumSize(QtCore.QSize(65, 621))
+        self.prevTrkID.setMaximumSize(QtCore.QSize(65, 621))
+        self.prevTrkID.setObjectName("prevTrkID")
+        self.gridLayout_3.addWidget(self.prevTrkID, 1, 1, 1, 1)
+        self.label_7 = QtWidgets.QLabel(self.groupBox)
+        self.label_7.setMinimumSize(QtCore.QSize(160, 20))
+        self.label_7.setMaximumSize(QtCore.QSize(160, 20))
+        self.label_7.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_7.setObjectName("label_7")
+        self.gridLayout_3.addWidget(self.label_7, 0, 2, 1, 1)
+        self.label_3 = QtWidgets.QLabel(self.groupBox)
+        self.label_3.setMinimumSize(QtCore.QSize(131, 20))
+        self.label_3.setMaximumSize(QtCore.QSize(131, 20))
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout_3.addWidget(self.label_3, 0, 0, 1, 1)
+        self.label_6 = QtWidgets.QLabel(self.groupBox)
+        self.label_6.setMinimumSize(QtCore.QSize(55, 20))
+        self.label_6.setMaximumSize(QtCore.QSize(55, 20))
+        self.label_6.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_6.setObjectName("label_6")
+        self.gridLayout_3.addWidget(self.label_6, 0, 1, 1, 1)
+        self.label_8 = QtWidgets.QLabel(self.groupBox)
+        self.label_8.setMinimumSize(QtCore.QSize(41, 20))
+        self.label_8.setMaximumSize(QtCore.QSize(41, 20))
+        self.label_8.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_8.setObjectName("label_8")
+        self.gridLayout_3.addWidget(self.label_8, 0, 3, 1, 1)
+        self.label_11 = QtWidgets.QLabel(self.groupBox)
+        self.label_11.setMinimumSize(QtCore.QSize(160, 20))
+        self.label_11.setMaximumSize(QtCore.QSize(160, 20))
+        self.label_11.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.label_11.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_11.setObjectName("label_11")
+        self.gridLayout_3.addWidget(self.label_11, 0, 7, 1, 1)
+        self.label_10 = QtWidgets.QLabel(self.groupBox)
+        self.label_10.setMinimumSize(QtCore.QSize(90, 20))
+        self.label_10.setMaximumSize(QtCore.QSize(90, 20))
+        self.label_10.setMidLineWidth(0)
+        self.label_10.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_10.setObjectName("label_10")
+        self.gridLayout_3.addWidget(self.label_10, 0, 5, 1, 1)
+        self.label_9 = QtWidgets.QLabel(self.groupBox)
+        self.label_9.setMinimumSize(QtCore.QSize(80, 20))
+        self.label_9.setMaximumSize(QtCore.QSize(80, 20))
+        self.label_9.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_9.setObjectName("label_9")
+        self.gridLayout_3.addWidget(self.label_9, 0, 4, 1, 1)
+        self.prevScore = QtWidgets.QTextBrowser(self.groupBox)
+        self.prevScore.setMinimumSize(QtCore.QSize(41, 621))
+        self.prevScore.setMaximumSize(QtCore.QSize(41, 621))
+        self.prevScore.setObjectName("prevScore")
+        self.gridLayout_3.addWidget(self.prevScore, 1, 3, 1, 1)
+        self.prevMisc = QtWidgets.QTextBrowser(self.groupBox)
+        self.prevMisc.setMinimumSize(QtCore.QSize(160, 621))
+        self.prevMisc.setMaximumSize(QtCore.QSize(160, 621))
+        self.prevMisc.setObjectName("prevMisc")
+        self.gridLayout_3.addWidget(self.prevMisc, 1, 7, 1, 1)
+        self.prevBBox = QtWidgets.QTextBrowser(self.groupBox)
+        self.prevBBox.setMinimumSize(QtCore.QSize(160, 621))
+        self.prevBBox.setMaximumSize(QtCore.QSize(160, 621))
+        self.prevBBox.setObjectName("prevBBox")
+        self.gridLayout_3.addWidget(self.prevBBox, 1, 2, 1, 1)
+        self.prevCenter = QtWidgets.QTextBrowser(self.groupBox)
+        self.prevCenter.setMinimumSize(QtCore.QSize(101, 621))
+        self.prevCenter.setMaximumSize(QtCore.QSize(101, 621))
+        self.prevCenter.setObjectName("prevCenter")
+        self.gridLayout_3.addWidget(self.prevCenter, 1, 4, 1, 1)
+        self.prevVelAct = QtWidgets.QTextBrowser(self.groupBox)
+        self.prevVelAct.setMinimumSize(QtCore.QSize(110, 621))
+        self.prevVelAct.setMaximumSize(QtCore.QSize(110, 621))
+        self.prevVelAct.setObjectName("prevVelAct")
+        self.gridLayout_3.addWidget(self.prevVelAct, 1, 5, 1, 1)
+        self.prevSI = QtWidgets.QTextBrowser(self.groupBox)
+        self.prevSI.setMinimumSize(QtCore.QSize(130, 621))
+        self.prevSI.setMaximumSize(QtCore.QSize(130, 621))
+        self.prevSI.setObjectName("prevSI")
+        self.gridLayout_3.addWidget(self.prevSI, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBox, 3, 1, 1, 1)
+        self.label = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.gridLayout_2.addWidget(self.label, 1, 1, 1, 1)
+        self.image2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.image2.setMinimumSize(QtCore.QSize(800, 800))
+        self.image2.setMaximumSize(QtCore.QSize(800, 800))
+        self.image2.setFrameShape(QtWidgets.QFrame.Box)
+        self.image2.setLineWidth(2)
+        self.image2.setText("")
+        self.image2.setObjectName("image2")
+        self.gridLayout_2.addWidget(self.image2, 0, 4, 1, 1)
         self.image1 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
         self.image1.setMinimumSize(QtCore.QSize(800, 800))
         self.image1.setMaximumSize(QtCore.QSize(800, 800))
@@ -49,15 +147,17 @@ class Ui_MainWindow(object):
         self.groupBox_3.setTitle("")
         self.groupBox_3.setObjectName("groupBox_3")
         self.gridLayout_6 = QtWidgets.QGridLayout(self.groupBox_3)
+        self.gridLayout_6.setContentsMargins(0, -1, 0, -1)
+        self.gridLayout_6.setSpacing(0)
         self.gridLayout_6.setObjectName("gridLayout_6")
         self.nextTrkID = QtWidgets.QTextBrowser(self.groupBox_3)
-        self.nextTrkID.setMinimumSize(QtCore.QSize(44, 621))
-        self.nextTrkID.setMaximumSize(QtCore.QSize(44, 621))
+        self.nextTrkID.setMinimumSize(QtCore.QSize(65, 621))
+        self.nextTrkID.setMaximumSize(QtCore.QSize(65, 621))
         self.nextTrkID.setObjectName("nextTrkID")
         self.gridLayout_6.addWidget(self.nextTrkID, 1, 1, 1, 1)
         self.label_26 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_26.setMinimumSize(QtCore.QSize(181, 20))
-        self.label_26.setMaximumSize(QtCore.QSize(181, 20))
+        self.label_26.setMinimumSize(QtCore.QSize(160, 20))
+        self.label_26.setMaximumSize(QtCore.QSize(160, 20))
         self.label_26.setAlignment(QtCore.Qt.AlignCenter)
         self.label_26.setObjectName("label_26")
         self.gridLayout_6.addWidget(self.label_26, 0, 2, 1, 1)
@@ -68,8 +168,8 @@ class Ui_MainWindow(object):
         self.label_4.setObjectName("label_4")
         self.gridLayout_6.addWidget(self.label_4, 0, 0, 1, 1)
         self.label_27 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_27.setMinimumSize(QtCore.QSize(44, 20))
-        self.label_27.setMaximumSize(QtCore.QSize(44, 20))
+        self.label_27.setMinimumSize(QtCore.QSize(55, 20))
+        self.label_27.setMaximumSize(QtCore.QSize(55, 20))
         self.label_27.setAlignment(QtCore.Qt.AlignCenter)
         self.label_27.setObjectName("label_27")
         self.gridLayout_6.addWidget(self.label_27, 0, 1, 1, 1)
@@ -80,20 +180,20 @@ class Ui_MainWindow(object):
         self.label_28.setObjectName("label_28")
         self.gridLayout_6.addWidget(self.label_28, 0, 3, 1, 1)
         self.label_29 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_29.setMinimumSize(QtCore.QSize(101, 20))
-        self.label_29.setMaximumSize(QtCore.QSize(101, 20))
+        self.label_29.setMinimumSize(QtCore.QSize(160, 20))
+        self.label_29.setMaximumSize(QtCore.QSize(160, 20))
         self.label_29.setAlignment(QtCore.Qt.AlignCenter)
         self.label_29.setObjectName("label_29")
         self.gridLayout_6.addWidget(self.label_29, 0, 7, 1, 1)
         self.label_30 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_30.setMinimumSize(QtCore.QSize(101, 20))
-        self.label_30.setMaximumSize(QtCore.QSize(101, 20))
+        self.label_30.setMinimumSize(QtCore.QSize(90, 20))
+        self.label_30.setMaximumSize(QtCore.QSize(90, 20))
         self.label_30.setAlignment(QtCore.Qt.AlignCenter)
         self.label_30.setObjectName("label_30")
         self.gridLayout_6.addWidget(self.label_30, 0, 5, 1, 1)
         self.label_31 = QtWidgets.QLabel(self.groupBox_3)
-        self.label_31.setMinimumSize(QtCore.QSize(101, 20))
-        self.label_31.setMaximumSize(QtCore.QSize(101, 20))
+        self.label_31.setMinimumSize(QtCore.QSize(80, 20))
+        self.label_31.setMaximumSize(QtCore.QSize(80, 20))
         self.label_31.setAlignment(QtCore.Qt.AlignCenter)
         self.label_31.setObjectName("label_31")
         self.gridLayout_6.addWidget(self.label_31, 0, 4, 1, 1)
@@ -103,18 +203,18 @@ class Ui_MainWindow(object):
         self.nextScore.setObjectName("nextScore")
         self.gridLayout_6.addWidget(self.nextScore, 1, 3, 1, 1)
         self.nextMisc = QtWidgets.QTextBrowser(self.groupBox_3)
-        self.nextMisc.setMinimumSize(QtCore.QSize(101, 621))
-        self.nextMisc.setMaximumSize(QtCore.QSize(101, 621))
+        self.nextMisc.setMinimumSize(QtCore.QSize(160, 621))
+        self.nextMisc.setMaximumSize(QtCore.QSize(160, 621))
         self.nextMisc.setObjectName("nextMisc")
         self.gridLayout_6.addWidget(self.nextMisc, 1, 7, 1, 1)
         self.nextSI = QtWidgets.QTextBrowser(self.groupBox_3)
-        self.nextSI.setMinimumSize(QtCore.QSize(131, 621))
-        self.nextSI.setMaximumSize(QtCore.QSize(131, 621))
+        self.nextSI.setMinimumSize(QtCore.QSize(130, 621))
+        self.nextSI.setMaximumSize(QtCore.QSize(130, 621))
         self.nextSI.setObjectName("nextSI")
         self.gridLayout_6.addWidget(self.nextSI, 1, 0, 1, 1)
         self.nextBBox = QtWidgets.QTextBrowser(self.groupBox_3)
-        self.nextBBox.setMinimumSize(QtCore.QSize(181, 621))
-        self.nextBBox.setMaximumSize(QtCore.QSize(181, 621))
+        self.nextBBox.setMinimumSize(QtCore.QSize(160, 621))
+        self.nextBBox.setMaximumSize(QtCore.QSize(160, 621))
         self.nextBBox.setObjectName("nextBBox")
         self.gridLayout_6.addWidget(self.nextBBox, 1, 2, 1, 1)
         self.nextCenter = QtWidgets.QTextBrowser(self.groupBox_3)
@@ -123,30 +223,21 @@ class Ui_MainWindow(object):
         self.nextCenter.setObjectName("nextCenter")
         self.gridLayout_6.addWidget(self.nextCenter, 1, 4, 1, 1)
         self.nextVelAct = QtWidgets.QTextBrowser(self.groupBox_3)
-        self.nextVelAct.setMinimumSize(QtCore.QSize(101, 621))
-        self.nextVelAct.setMaximumSize(QtCore.QSize(101, 621))
+        self.nextVelAct.setMinimumSize(QtCore.QSize(110, 621))
+        self.nextVelAct.setMaximumSize(QtCore.QSize(110, 621))
         self.nextVelAct.setObjectName("nextVelAct")
         self.gridLayout_6.addWidget(self.nextVelAct, 1, 5, 1, 1)
-        self.gridLayout_2.addWidget(self.groupBox_3, 4, 4, 1, 1)
-        self.image2 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.image2.setMinimumSize(QtCore.QSize(800, 800))
-        self.image2.setMaximumSize(QtCore.QSize(800, 800))
-        self.image2.setFrameShape(QtWidgets.QFrame.Box)
-        self.image2.setLineWidth(2)
-        self.image2.setText("")
-        self.image2.setObjectName("image2")
-        self.gridLayout_2.addWidget(self.image2, 0, 4, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBox_3, 3, 4, 1, 1)
+        self.label_32 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
+        self.label_32.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_32.setObjectName("label_32")
+        self.gridLayout_2.addWidget(self.label_32, 1, 4, 1, 1)
         self.groupBox_2 = QtWidgets.QGroupBox(self.scrollAreaWidgetContents)
         self.groupBox_2.setAutoFillBackground(False)
         self.groupBox_2.setTitle("")
         self.groupBox_2.setObjectName("groupBox_2")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.groupBox_2)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.nextButton = QtWidgets.QPushButton(self.groupBox_2)
-        self.nextButton.setMinimumSize(QtCore.QSize(91, 41))
-        self.nextButton.setMaximumSize(QtCore.QSize(91, 41))
-        self.nextButton.setObjectName("nextButton")
-        self.gridLayout_4.addWidget(self.nextButton, 1, 0, 1, 1)
         self.startButton = QtWidgets.QPushButton(self.groupBox_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(91)
@@ -161,98 +252,46 @@ class Ui_MainWindow(object):
         self.quitButton.setMaximumSize(QtCore.QSize(91, 41))
         self.quitButton.setObjectName("quitButton")
         self.gridLayout_4.addWidget(self.quitButton, 2, 0, 1, 1)
-        self.gridLayout_2.addWidget(self.groupBox_2, 0, 2, 1, 1)
-        self.groupBox = QtWidgets.QGroupBox(self.scrollAreaWidgetContents)
-        self.groupBox.setTitle("")
-        self.groupBox.setObjectName("groupBox")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.prevTrkID = QtWidgets.QTextBrowser(self.groupBox)
-        self.prevTrkID.setMinimumSize(QtCore.QSize(44, 621))
-        self.prevTrkID.setMaximumSize(QtCore.QSize(44, 621))
-        self.prevTrkID.setObjectName("prevTrkID")
-        self.gridLayout_3.addWidget(self.prevTrkID, 1, 1, 1, 1)
-        self.label_7 = QtWidgets.QLabel(self.groupBox)
-        self.label_7.setMinimumSize(QtCore.QSize(181, 20))
-        self.label_7.setMaximumSize(QtCore.QSize(181, 20))
-        self.label_7.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_7.setObjectName("label_7")
-        self.gridLayout_3.addWidget(self.label_7, 0, 2, 1, 1)
-        self.label_3 = QtWidgets.QLabel(self.groupBox)
-        self.label_3.setMinimumSize(QtCore.QSize(131, 20))
-        self.label_3.setMaximumSize(QtCore.QSize(131, 20))
-        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_3.setObjectName("label_3")
-        self.gridLayout_3.addWidget(self.label_3, 0, 0, 1, 1)
-        self.label_6 = QtWidgets.QLabel(self.groupBox)
-        self.label_6.setMinimumSize(QtCore.QSize(44, 20))
-        self.label_6.setMaximumSize(QtCore.QSize(44, 20))
-        self.label_6.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_6.setObjectName("label_6")
-        self.gridLayout_3.addWidget(self.label_6, 0, 1, 1, 1)
-        self.label_8 = QtWidgets.QLabel(self.groupBox)
-        self.label_8.setMinimumSize(QtCore.QSize(41, 20))
-        self.label_8.setMaximumSize(QtCore.QSize(41, 20))
-        self.label_8.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_8.setObjectName("label_8")
-        self.gridLayout_3.addWidget(self.label_8, 0, 3, 1, 1)
-        self.label_11 = QtWidgets.QLabel(self.groupBox)
-        self.label_11.setMinimumSize(QtCore.QSize(101, 20))
-        self.label_11.setMaximumSize(QtCore.QSize(101, 20))
-        self.label_11.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_11.setObjectName("label_11")
-        self.gridLayout_3.addWidget(self.label_11, 0, 7, 1, 1)
-        self.label_10 = QtWidgets.QLabel(self.groupBox)
-        self.label_10.setMinimumSize(QtCore.QSize(101, 20))
-        self.label_10.setMaximumSize(QtCore.QSize(101, 20))
-        self.label_10.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_10.setObjectName("label_10")
-        self.gridLayout_3.addWidget(self.label_10, 0, 5, 1, 1)
-        self.label_9 = QtWidgets.QLabel(self.groupBox)
-        self.label_9.setMinimumSize(QtCore.QSize(101, 20))
-        self.label_9.setMaximumSize(QtCore.QSize(101, 20))
-        self.label_9.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_9.setObjectName("label_9")
-        self.gridLayout_3.addWidget(self.label_9, 0, 4, 1, 1)
-        self.prevScore = QtWidgets.QTextBrowser(self.groupBox)
-        self.prevScore.setMinimumSize(QtCore.QSize(41, 621))
-        self.prevScore.setMaximumSize(QtCore.QSize(41, 621))
-        self.prevScore.setObjectName("prevScore")
-        self.gridLayout_3.addWidget(self.prevScore, 1, 3, 1, 1)
-        self.prevMisc = QtWidgets.QTextBrowser(self.groupBox)
-        self.prevMisc.setMinimumSize(QtCore.QSize(101, 621))
-        self.prevMisc.setMaximumSize(QtCore.QSize(101, 621))
-        self.prevMisc.setObjectName("prevMisc")
-        self.gridLayout_3.addWidget(self.prevMisc, 1, 7, 1, 1)
-        self.prevSI = QtWidgets.QTextBrowser(self.groupBox)
-        self.prevSI.setMinimumSize(QtCore.QSize(131, 621))
-        self.prevSI.setMaximumSize(QtCore.QSize(131, 621))
-        self.prevSI.setObjectName("prevSI")
-        self.gridLayout_3.addWidget(self.prevSI, 1, 0, 1, 1)
-        self.prevBBox = QtWidgets.QTextBrowser(self.groupBox)
-        self.prevBBox.setMinimumSize(QtCore.QSize(181, 621))
-        self.prevBBox.setMaximumSize(QtCore.QSize(181, 621))
-        self.prevBBox.setObjectName("prevBBox")
-        self.gridLayout_3.addWidget(self.prevBBox, 1, 2, 1, 1)
-        self.prevCenter = QtWidgets.QTextBrowser(self.groupBox)
-        self.prevCenter.setMinimumSize(QtCore.QSize(101, 621))
-        self.prevCenter.setMaximumSize(QtCore.QSize(101, 621))
-        self.prevCenter.setObjectName("prevCenter")
-        self.gridLayout_3.addWidget(self.prevCenter, 1, 4, 1, 1)
-        self.prevVelAct = QtWidgets.QTextBrowser(self.groupBox)
-        self.prevVelAct.setMinimumSize(QtCore.QSize(101, 621))
-        self.prevVelAct.setMaximumSize(QtCore.QSize(101, 621))
-        self.prevVelAct.setObjectName("prevVelAct")
-        self.gridLayout_3.addWidget(self.prevVelAct, 1, 5, 1, 1)
-        self.gridLayout_2.addWidget(self.groupBox, 4, 1, 2, 1)
-        self.label_32 = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.label_32.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_32.setObjectName("label_32")
-        self.gridLayout_2.addWidget(self.label_32, 1, 4, 1, 1)
-        self.label = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.gridLayout_2.addWidget(self.label, 1, 1, 1, 1)
+        self.nextButton = QtWidgets.QPushButton(self.groupBox_2)
+        self.nextButton.setMinimumSize(QtCore.QSize(91, 41))
+        self.nextButton.setMaximumSize(QtCore.QSize(91, 41))
+        self.nextButton.setObjectName("nextButton")
+        self.gridLayout_4.addWidget(self.nextButton, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBox_2, 0, 2, 2, 1)
+        self.groupBox_4 = QtWidgets.QGroupBox(self.scrollAreaWidgetContents)
+        self.groupBox_4.setTitle("")
+        self.groupBox_4.setObjectName("groupBox_4")
+        self.goFrameButton = QtWidgets.QPushButton(self.groupBox_4)
+        self.goFrameButton.setGeometry(QtCore.QRect(70, 50, 91, 41))
+        self.goFrameButton.setMinimumSize(QtCore.QSize(91, 41))
+        self.goFrameButton.setMaximumSize(QtCore.QSize(91, 41))
+        self.goFrameButton.setObjectName("goFrameButton")
+        self.runButton = QtWidgets.QPushButton(self.groupBox_4)
+        self.runButton.setGeometry(QtCore.QRect(70, 220, 91, 41))
+        self.runButton.setMinimumSize(QtCore.QSize(91, 41))
+        self.runButton.setMaximumSize(QtCore.QSize(91, 41))
+        self.runButton.setObjectName("runButton")
+        self.stopButton = QtWidgets.QPushButton(self.groupBox_4)
+        self.stopButton.setGeometry(QtCore.QRect(70, 270, 91, 41))
+        self.stopButton.setMinimumSize(QtCore.QSize(91, 41))
+        self.stopButton.setMaximumSize(QtCore.QSize(91, 41))
+        self.stopButton.setObjectName("runButton")
+        self.frameEdit = QtWidgets.QLineEdit(self.groupBox_4)
+        self.frameEdit.setGeometry(QtCore.QRect(70, 100, 91, 25))
+        self.frameEdit.setObjectName("frameEdit")
+        self.frameLabel = QtWidgets.QLabel(self.groupBox_4)
+        self.frameLabel.setGeometry(QtCore.QRect(70, 130, 101, 17))
+        self.frameLabel.setObjectName("frameLabel")
+        self.label_2 = QtWidgets.QLabel(self.groupBox_4)
+        self.label_2.setGeometry(QtCore.QRect(10, 160, 67, 31))
+        self.label_2.setText("0")
+        self.label_2.setObjectName("label_2")
+        self.label_5 = QtWidgets.QLabel(self.groupBox_4)
+        self.label_5.setGeometry(QtCore.QRect(180, 160, 67, 31))
+        self.label_5.setText("0")
+        self.label_5.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout_2.addWidget(self.groupBox_4, 3, 2, 1, 1)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.gridLayout.addWidget(self.scrollArea, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -270,47 +309,127 @@ class Ui_MainWindow(object):
         self.startButton.clicked.connect(self.start)
         self.nextButton.clicked.connect(self.next)
         self.quitButton.clicked.connect(self.quit)
+        self.goFrameButton.clicked.connect(self.goFrame)
+        self.runButton.clicked.connect(self.run)
+        self.stopButton.clicked.connect(self.stop)
+
+        self.imageBuf = list()
+        self.predInfoBuf = list()
+        for i in range(10):
+            self.imageBuf.append(None)
+            self.predInfoBuf.append(None)
+        self.prevBufPtr = 0
+        self.curBufPtr = 0
+        self.startFlag = True
+        self.prevFlag = False
+        self.nextFlag = False
+        self.frameNumber = 0
+
+        self.r_timer = QtCore.QTimer()
+        self.r_timer.setInterval(100)
+        self.r_timer.timeout.connect(self.run_timer)
+        self.run_flag = False
+        self.runButton.setEnabled(False)
+        self.stopButton.setEnabled(False)
+
+        self.nextButton.setEnabled(False)
+        self.goFrameButton.setEnabled(False)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label_26.setText(_translate("MainWindow", "BBox[x1,y1,x2,y2]"))
-        self.label_4.setText(_translate("MainWindow", "SI"))
-        self.label_27.setText(_translate("MainWindow", "Trk ID"))
+        self.label_4.setText(_translate("MainWindow", "SI  IN/COV#"))
+        self.label_27.setText(_translate("MainWindow", "T ID/Cnt"))
         self.label_28.setText(_translate("MainWindow", "Score"))
-        self.label_29.setText(_translate("MainWindow", "CenP/LnID/LnCt"))
-        self.label_30.setText(_translate("MainWindow", "Velocity"))
+        self.label_29.setText(_translate("MainWindow", "CenP/LnID/LnCt/Glv/Obs"))
+        self.label_30.setText(_translate("MainWindow", "Vel/Accel"))
         self.label_31.setText(_translate("MainWindow", "Center"))
         self.nextButton.setText(_translate("MainWindow", "NEXT"))
         self.startButton.setText(_translate("MainWindow", "START"))
         self.quitButton.setText(_translate("MainWindow", "QUIT"))
         self.label_7.setText(_translate("MainWindow", "BBox[x1,y1,x2,y2]"))
-        self.label_3.setText(_translate("MainWindow", "SI"))
-        self.label_6.setText(_translate("MainWindow", "Trk ID"))
+        self.label_3.setText(_translate("MainWindow", "SI  IN/COV#"))
+        self.label_6.setText(_translate("MainWindow", "T ID/Cnt"))
         self.label_8.setText(_translate("MainWindow", "Score"))
-        self.label_11.setText(_translate("MainWindow", "CenP/LnID/LnCt"))
-        self.label_10.setText(_translate("MainWindow", "Velocity"))
+        self.label_11.setText(_translate("MainWindow", "CenP/LnID/LnCt/Glv/Obs"))
+        self.label_10.setText(_translate("MainWindow", "Vel/Accel"))
         self.label_9.setText(_translate("MainWindow", "Center"))
         self.label_32.setText(_translate("MainWindow", "Next Frame"))
         self.label.setText(_translate("MainWindow", "Previous Frame"))
+        self.goFrameButton.setText(_translate("MainWindow", "GO FRAME"))
+        self.runButton.setText(_translate("MainWindow", "RUN"))
+        self.stopButton.setText(_translate("MainWindow", "STOP"))
+        self.frameLabel.setText(_translate("MainWindow", "Frame Number"))
 
-    def start(self):
-        self.startButton.setEnabled(False)
-        self.nextButton.setEnabled(True)
-        image, pred_info = predict.predict_first()
-        qimg = QtGui.QImage(image, image.shape[0], image.shape[1], QtGui.QImage.Format_RGB888)
+    def getNextPred(self):
+        self.imageBuf[self.curBufPtr], self.predInfoBuf[self.curBufPtr], self.frameNumber = predict.predict_first()
+
+        qimg = QtGui.QImage(self.imageBuf[self.curBufPtr], self.imageBuf[self.curBufPtr].shape[0],
+                            self.imageBuf[self.curBufPtr].shape[1], QtGui.QImage.Format_RGB888)
         pixmap = QtGui.QPixmap(qimg)
         pixmap = pixmap.scaled(self.image2.width(), self.image2.height(), QtCore.Qt.KeepAspectRatio)  # Scale pixmap
         self.image2.setPixmap(pixmap)  # Set the pixmap onto the label
-        self.nextSI.setText(pred_info['si'])
-        self.nextTrkID.setText(pred_info['id'])
-        self.nextBBox.setText(pred_info['box'])
-        self.nextScore.setText(pred_info['scr'])
-        self.nextCenter.setText(pred_info['cen'])
-        self.nextVelAct.setText(pred_info['vel'])
-        self.nextMisc.setText('misc')
+        self.nextSI.setText(self.predInfoBuf[self.curBufPtr]['si'])
+        self.nextTrkID.setText(self.predInfoBuf[self.curBufPtr]['id'])
+        self.nextBBox.setText(self.predInfoBuf[self.curBufPtr]['box'])
+        self.nextScore.setText(self.predInfoBuf[self.curBufPtr]['scr'])
+        self.nextCenter.setText(self.predInfoBuf[self.curBufPtr]['cen'])
+        self.nextVelAct.setText(self.predInfoBuf[self.curBufPtr]['vel'])
+        self.nextMisc.setText(self.predInfoBuf[self.curBufPtr]['misc'])
+        self.label_5.setText(str(self.frameNumber))
+        self.frameEdit.setText(str(self.frameNumber))
 
-    def next(self):
+        if self.curBufPtr == 9:
+            self.curBufPtr = 0
+        else:
+            self.curBufPtr += 1
+
+    def movePrevToNext(self):
+        qimg = self.image1.pixmap()
+        self.image2.setPixmap(qimg)
+        self.nextSI.setText(self.prevSI.toPlainText())
+        self.nextTrkID.setText(self.prevTrkID.toPlainText())
+        self.nextBBox.setText(self.prevBBox.toPlainText())
+        self.nextScore.setText(self.prevScore.toPlainText())
+        self.nextCenter.setText(self.prevCenter.toPlainText())
+        self.nextVelAct.setText(self.prevVelAct.toPlainText())
+        self.nextMisc.setText(self.prevMisc.toPlainText())
+        self.label_5.setText(self.label_2.text())
+
+    def movePrevBufToPrev(self):
+        qimg = QtGui.QImage(self.imageBuf[self.prevBufPtr], self.imageBuf[self.prevBufPtr].shape[0],
+                            self.imageBuf[self.prevBufPtr].shape[1], QtGui.QImage.Format_RGB888)
+        pixmap = QtGui.QPixmap(qimg)
+        pixmap = pixmap.scaled(self.image1.width(), self.image1.height(), QtCore.Qt.KeepAspectRatio)  # Scale pixmap
+        self.image1.setPixmap(pixmap)  # Set the pixmap onto the label
+        self.prevSI.setText(self.predInfoBuf[self.prevBufPtr]['si'])
+        self.prevTrkID.setText(self.predInfoBuf[self.prevBufPtr]['id'])
+        self.prevBBox.setText(self.predInfoBuf[self.prevBufPtr]['box'])
+        self.prevScore.setText(self.predInfoBuf[self.prevBufPtr]['scr'])
+        self.prevCenter.setText(self.predInfoBuf[self.prevBufPtr]['cen'])
+        self.prevVelAct.setText(self.predInfoBuf[self.prevBufPtr]['vel'])
+        self.prevMisc.setText(self.predInfoBuf[self.prevBufPtr]['misc'])
+        self.label_2.setText(str(int(self.label_5.text()) - 1))
+
+
+    def movePrevBufToNext(self):
+        qimg = QtGui.QImage(self.imageBuf[self.prevBufPtr], self.imageBuf[self.prevBufPtr].shape[0],
+                            self.imageBuf[self.prevBufPtr].shape[1], QtGui.QImage.Format_RGB888)
+        pixmap = QtGui.QPixmap(qimg)
+        pixmap = pixmap.scaled(self.image2.width(), self.image2.height(), QtCore.Qt.KeepAspectRatio)  # Scale pixmap
+        self.image2.setPixmap(pixmap)  # Set the pixmap onto the label
+        self.nextSI.setText(self.predInfoBuf[self.prevBufPtr]['si'])
+        self.nextTrkID.setText(self.predInfoBuf[self.prevBufPtr]['id'])
+        self.nextBBox.setText(self.predInfoBuf[self.prevBufPtr]['box'])
+        self.nextScore.setText(self.predInfoBuf[self.prevBufPtr]['scr'])
+        self.nextCenter.setText(self.predInfoBuf[self.prevBufPtr]['cen'])
+        self.nextVelAct.setText(self.predInfoBuf[self.prevBufPtr]['vel'])
+        self.nextMisc.setText(self.predInfoBuf[self.prevBufPtr]['misc'])
+        self.label_5.setText(str(int(self.label_2.text()) + 1))
+
+
+    def moveNextToPrev(self):
         qimg = self.image2.pixmap()
         self.image1.setPixmap(qimg)
         self.prevSI.setText(self.nextSI.toPlainText())
@@ -320,7 +439,123 @@ class Ui_MainWindow(object):
         self.prevCenter.setText(self.nextCenter.toPlainText())
         self.prevVelAct.setText(self.nextVelAct.toPlainText())
         self.prevMisc.setText(self.nextMisc.toPlainText())
-        self.start()
+        self.label_2.setText(self.label_5.text())
+
+    def start(self):
+        if self.startFlag == True:
+            # first time here
+            self.startFlag = False
+            _translate = QtCore.QCoreApplication.translate
+            self.startButton.setText(_translate("MainWindow", "PREV"))
+            self.startButton.setEnabled(False)
+            self.nextButton.setEnabled(True)
+            self.goFrameButton.setEnabled(True)
+            self.runButton.setEnabled(True)
+
+            self.getNextPred()
+
+        else:
+            # go backackward
+            if self.prevFlag == False:
+                self.prevFlag = True
+                if self.nextFlag == False:
+                    if self.curBufPtr > 2:
+                        self.prevBufPtr = self.curBufPtr - 3
+                    else:
+                        self.prevBufPtr = self.curBufPtr + 7
+                else:
+                    if self.prevBufPtr > 2:
+                        self.prevBufPtr = self.prevBufPtr - 3
+                    else:
+                        self.prevBufPtr = self.prevBufPtr + 7
+                self.nextFlag = False
+
+            if self.predInfoBuf[self.prevBufPtr] != None:
+                self.movePrevToNext()
+
+                self.movePrevBufToPrev()
+
+                if self.prevBufPtr == 0:
+                    self.prevBufPtr = 9
+                else:
+                    self.prevBufPtr -= 1
+
+            if self.predInfoBuf[self.prevBufPtr] == None or \
+                                        self.prevBufPtr == self.curBufPtr - 1:
+                self.startButton.setEnabled(False)
+
+    def next(self):
+        if self.prevFlag == False and self.nextFlag == False:
+            if self.predInfoBuf[2] != None:
+                self.startButton.setEnabled(True)
+
+            self.moveNextToPrev()
+
+            self.getNextPred()
+
+        else:
+            # in prev/next mode
+            if self.prevFlag == True:
+                self.prevFlag = False
+                self.nextFlag = True
+                self.startButton.setEnabled(True)
+                if self.prevBufPtr < 7:
+                    self.prevBufPtr += 3
+                else:
+                    self.prevBufPtr -= 7  # + 3 - 10
+
+            if self.prevBufPtr == self.curBufPtr:
+                self.prevFlag = False
+                self.nextFlag = False
+
+                self.moveNextToPrev()
+
+                self.getNextPred()
+
+            else:
+                self.moveNextToPrev()
+
+                self.movePrevBufToNext()
+
+                if self.prevBufPtr == 9:
+                    self.prevBufPtr = 0
+                else:
+                    self.prevBufPtr += 1
+
+    def run(self):
+        self.runButton.setEnabled(False)
+        self.stopButton.setEnabled(True)
+        self.run_flag = True
+        self.r_timer.start()
+
+    def run_timer(self):
+        if self.run_flag == True:
+            self.next()
+        else:
+            self.r_timer.stop()
+
+    def stop(self):
+        self.runButton.setEnabled(True)
+        self.stopButton.setEnabled(False)
+        self.run_flag = False
+
+    def goFrame(self):
+        goFrameNum = int(self.frameEdit.text())
+
+        if goFrameNum <= self.frameNumber:
+            self.frameEdit.setText(str(self.frameNumber))
+            return
+
+        while (goFrameNum - 2 > self.frameNumber):
+            self.imageBuf[self.curBufPtr], self.predInfoBuf[self.curBufPtr], self.frameNumber = predict.predict_first()
+            if self.curBufPtr == 9:
+                self.curBufPtr = 0
+            else:
+                self.curBufPtr += 1
+
+        self.getNextPred()
+        self.moveNextToPrev()
+        self.getNextPred()
 
     def quit(self):
         predict.quit()

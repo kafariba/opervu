@@ -28,7 +28,7 @@ setup_gpu(gpu)
 model_path = '/home/kamiar/projects/opervu/inference/model.h5'
 
 # load retinanet model
-model = models.load_model(model_path, backbone_name='resnet50', compile=False)
+model = models.load_model(model_path, backbone_name='resnet50')
 
 # if the model is not converted to an inference model, use the line below
 #model = models.convert_model(model)

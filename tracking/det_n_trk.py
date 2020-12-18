@@ -34,6 +34,11 @@ import tensorflow as tf
 from munkres import Munkres
 my_munk = Munkres()
 
+STOP_CMND = "StopCmnd"
+START_CMND = "StartCmnd"
+QUIT_CMND = "QuitCmnd"
+IDLE_CMND = "IdleCmnd"
+
 # use this to change which GPU to use
 gpu = '0'
 
@@ -186,92 +191,139 @@ PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/cut1.avi'
 # Open video file
 vidcap = cv2.VideoCapture(PATH_TO_VIDEO)
 
-def predict_first():
+def dashed_rect(img, pt1, pt2, color, thickness=4):
+    xvals = np.arange(pt1[0], pt2[0], 10)
+    xo = xvals[0]
+    for i, x in enumerate(xvals):
+        if i%2 == 1:
+            cv2.line(img,(xo, pt1[1]), (x, pt1[1]), color, thickness)
+            cv2.line(img,(xo, pt2[1]), (x, pt2[1]), color, thickness)
+        xo = x
+    yvals = np.arange(pt1[1], pt2[1], 10)
+    yo = yvals
+    for i, y in enumerate(yvals):
+        if i%2 == 1:
+            cv2.line(img,(pt1[0], yo), (pt1[0], y), color, thickness)
+            cv2.line(img,(pt2[0], yo), (pt2[0], y), color, thickness)
+        yo = y
+
+def detect_and_predict(c_q, s_q):
     global frames, frames_ptr, prev_frames_ptr, frameNumber
+    cmnd = IDLE_CMND
 
-    if vidcap.isOpened():
-        # Acquire frame and expand frame dimensions to have shape: [1, None, None, 3]
-        # i.e. a single-column array, where each item in the column has the pixel RGB value
-        success, image = vidcap.read()
+    while True:
+        if not c_q.empty():
+            cmnd = c_q.get()
+            c_q.task_done()
+        if cmnd == QUIT_CMND:
+            quit()
+            return
 
-        if success:
-            # copy to draw on
-            draw = image.copy()
-            draw = cv2.cvtColor(draw, cv2.COLOR_BGR2RGB)
+        if vidcap.isOpened() and cmnd == START_CMND:
+            # Acquire frame and expand frame dimensions to have shape: [1, None, None, 3]
+            # i.e. a single-column array, where each item in the column has the pixel RGB value
+            success, image = vidcap.read()
 
-            # preprocess image for network
-            image = preprocess_image(image)
-            image, scale = resize_image(image)
+            if success:
+                # copy to draw on
+                draw = image.copy()
+                draw = cv2.cvtColor(draw, cv2.COLOR_BGR2RGB)
 
-            # process image
-            boxes, scores, labels = model.predict_on_batch(np.expand_dims(image, axis=0))
+                # preprocess image for network
+                image = preprocess_image(image)
+                image, scale = resize_image(image)
 
-            # correct for image scale
-            boxes /= scale
+                # process image
+                boxes, scores, labels = model.predict_on_batch(np.expand_dims(image, axis=0))
 
-            # init SI containers for this frame
-            frame = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]}
+                # correct for image scale
+                boxes /= scale
 
-            # visualize detections
-            for box, score, label in zip(boxes[0], scores[0], labels[0]):
-                # scores are sorted so we can break
-                if score < min_SI_scores[label]:
-                    break
+                # init SI containers for this frame
+                frame = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]}
 
-                i_box = np.array([int(box[0]), int(box[1]), int(box[2]), int(box[3])])
-                i_center = box_center(i_box)
-                i_score = int(score * 100)
+                # visualize detections
+                for box, score, label in zip(boxes[0], scores[0], labels[0]):
+                    # scores are sorted so we can break
+                    if score < min_SI_scores[label]:
+                        break
 
-                frame[label].append({'id': -1, 'trk_cnt': 0, 'link_id': -1, 'link_cnt': 0, 'box':i_box,
-                                        'scr':i_score, 'cen':i_center, 'cen_pred':[float('nan'), float('nan')],
-                                        'vel':[0, 0], 'accel':[0, 0], 'adj_glove': -1, 'adj_obs': -1, 'in': '-', 'cov':0})
+                    i_box = np.array([int(box[0]), int(box[1]), int(box[2]), int(box[3])])
+                    i_center = box_center(i_box)
+                    i_score = int(score * 100)
 
-                color = label_color(label)
+                    frame[label].append({'id': -1, 'trk_cnt': 0, 'link_id': -1, 'link_cnt': 0, 'box':i_box,
+                                            'scr':i_score, 'cen':i_center, 'cen_pred':[float('nan'), float('nan')],
+                                            'vel':[0, 0], 'accel':[0, 0], 'adj_glove': -1, 'adj_obs': -1, 'in':' ', 'cov':0})
 
-                b = box.astype(int)
-                draw_box(draw, b, color=color)
+                    # color = label_color(label)
 
-                caption = "{} {:.3f}".format(labels_to_names[label], score)
-                draw_caption(draw, b, caption)
+                    # b = box.astype(int)
+                    # draw_box(draw, b, color=color)
 
-                #resized = cv2.resize(draw, (1024, 1024))
+                    # caption = "{} {:.3f}".format(labels_to_names[label], score)
+                    # draw_caption(draw, b, caption)
 
-                # All the results have been drawn on the frame, so it's time to display it.
-                #cv2.imshow('Object detector', resized)
+                    #resized = cv2.resize(draw, (1024, 1024))
 
-            # add SIs to the frames
-            if frames_ptr == 10:
-                frames_ptr = 0
-                prev_frames_ptr = 9
-            else:
-                prev_frames_ptr = frames_ptr - 1
-            frames[frames_ptr] = frame
+                    # All the results have been drawn on the frame, so it's time to display it.
+                    #cv2.imshow('Object detector', resized)
 
-            # assign id/link id: correlate SIs from consecutive frames, link enclosing SIs (glove & forceps)
-            track_SIs()
+                # add SIs to the frames
+                if frames_ptr == 10:
+                    frames_ptr = 0
+                    prev_frames_ptr = 9
+                else:
+                    prev_frames_ptr = frames_ptr - 1
+                frames[frames_ptr] = frame
 
-            pred_info = {'si':'', 'id':'', 'box':'', 'scr':'', 'cen':'', 'vel':'', 'misc':''}
+                # assign id/link id: correlate SIs from consecutive frames, link enclosing SIs (glove & forceps)
+                track_SIs()
 
-            for si in frames[frames_ptr]:
-                for si_item in frames[frames_ptr][si]:
-                    pred_info['si'] += "{} {}/{}\n".format(labels_to_names[si], si_item['in'], si_item['cov'])
-                    pred_info['id'] += "{}/{}\n".format(si_item['id'], si_item['trk_cnt'])
-                    pred_info['box'] += "{:4d},{:4d},{:4d},{:4d}\n".format(si_item['box'][0],
-                            si_item['box'][1], si_item['box'][2], si_item['box'][3])
-                    pred_info['scr'] += "{:3d}\n".format(si_item['scr'])
-                    pred_info['cen'] += "{},{}\n".format(si_item['cen'][0], si_item['cen'][1])
-                    pred_info['vel'] += "{:.0f},{:.0f}/{:.0f},{:.0f}\n".format(si_item['vel'][0], si_item['vel'][1],
-                                                                            si_item['accel'][0], si_item['accel'][1])
-                    pred_info['misc'] += "{},{}/{}/{}/{}/{}\n".format(si_item['cen_pred'][0], si_item['cen_pred'][1],
-                                            si_item['link_id'], si_item['link_cnt'], si_item['adj_glove'], si_item['adj_obs'])
+                pred_info = {'si':'', 'id':'', 'cen':'', 'in':'', 'cov':''}
+
+                for si in frames[frames_ptr]:
+                    for si_item in frames[frames_ptr][si]:
+
+                        if si in tracked_SIs:
+                            # draw the box and label the tracked SI
+                            color = label_color(si)
+                            if si_item['cov'] != 0:
+                                dashed_rect(draw, (si_item['box'][0], si_item['box'][1]), (si_item['box'][2], si_item['box'][3]), color, 3)
+                            else:
+                                cv2.rectangle(draw, (si_item['box'][0], si_item['box'][1]), (si_item['box'][2], si_item['box'][3]), color, 3)
+
+                            caption = "{}:{}".format(si_item['id'], labels_to_names[si])
+                            #cv2.putText(draw, caption, (si_item['box'][0], si_item['box'][1] - 10), cv2.FONT_HERSHEY_PLAIN, 6, (0, 0, 0), 2)
+                            cv2.putText(draw, caption, (si_item['box'][0], si_item['box'][1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 4, cv2.LINE_AA)
 
 
-            frames_ptr += 1
-            frameNumber += 1
-            return draw, pred_info, frameNumber
-            # Press 'q' to quit
-            #if cv2.waitKey(1) == ord('q'):
-                #break
+                            pred_info['in'] += "{}\n".format(si_item['in'])
+                            if si_item['cov'] != 0:
+                                pred_info['cov'] += "X\n"
+                            else:
+                                pred_info['cov'] += " \n"
+                            pred_info['si'] += "{}\n".format(labels_to_names[si])
+                            pred_info['id'] += "{}\n".format(si_item['id'])
+                            # pred_info['id'] += "{}/{}\n".format(si_item['id'], si_item['trk_cnt'])
+                            # pred_info['box'] += "{:4d},{:4d},{:4d},{:4d}\n".format(si_item['box'][0],
+                                    # si_item['box'][1], si_item['box'][2], si_item['box'][3])
+                            # pred_info['scr'] += "{:3d}\n".format(si_item['scr'])
+                            pred_info['cen'] += "{:.1f},{:.1f}\n".format(si_item['cen'][0]/2045, si_item['cen'][1]/2045)
+                            # pred_info['vel'] += "{:.0f},{:.0f}/{:.0f},{:.0f}\n".format(si_item['vel'][0], si_item['vel'][1],
+                                                                                    # si_item['accel'][0], si_item['accel'][1])
+                            # pred_info['misc'] += "{},{}/{}/{}/{}/{}\n".format(si_item['cen_pred'][0], si_item['cen_pred'][1],
+                                                    # si_item['link_id'], si_item['link_cnt'], si_item['adj_glove'], si_item['adj_obs'])
+
+
+                frames_ptr += 1
+                frameNumber += 1
+                # return draw, pred_info, frameNumber
+                s_q.put(draw)
+                s_q.put(pred_info)
+                # Press 'q' to quit
+                #if cv2.waitKey(1) == ord('q'):
+                    #break
 
 def box_center(box):
     # returns the center of the given rect. box
@@ -438,7 +490,6 @@ def id_to_item(id, si_item):
             return si_item[i]
     else:
         logging.debug("F#{}: Bad ID for index: {}".format(frameNumber, id))
-        return None
 
 def create_SI_ghost(si, si_item):
     global frames, frames_ptr, prev_frames_ptr
@@ -534,7 +585,6 @@ def track_SIs():
                 else:
                     frames[frames_ptr][si].pop(ioa_pair[0][1])
 
-
         # for each SI other than incision
         if len(frames[frames_ptr][si]) == 0:
             # no SI detected, check for SI in prev frame
@@ -572,7 +622,7 @@ def track_SIs():
                 # if only 1 of the same si item in both frames,
                 # then they are the same si if within velocity range
 
-                vel = calc_vel(si, frames[frames_ptr][si][0]['box'], frames[prev_frames_ptr][si][0]['box'])
+                vel =  calc_vel(si, frames[frames_ptr][si][0]['box'], frames[prev_frames_ptr][si][0]['box'])
                 frames[frames_ptr][si][0]['vel'] = vel  # ewa(frames[prev_frames_ptr][si][0]['vel'], vel)
                 frames[frames_ptr][si][0]['accel'] = [int(vel[0] - frames[prev_frames_ptr][si][0]['vel'][0] + frames[prev_frames_ptr][si][0]['accel'][0] / 2),
                                                         int(vel[1] - frames[prev_frames_ptr][si][0]['vel'][1] + frames[prev_frames_ptr][si][0]['accel'][1] / 2)]
