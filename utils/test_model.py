@@ -36,7 +36,8 @@ model = models.load_model(model_path, backbone_name='resnet50')
 #print(model.summary())
 
 # load label to names mapping for visualization purposes
-labels_to_names = {0: 'forceps',
+labels_to_names = {
+0: 'forceps',
 1: 'clamp',
 2: 'scalpel',
 3: 'sponge',
@@ -48,10 +49,41 @@ labels_to_names = {0: 'forceps',
 9: 'glove',
 10: 'incision',
 11: 'obstruction',
-12: 'bovie'}
+12: 'bovie',
+13: 'round retractor',
+14: 'saw',
+15: 'sternal retractor',
+16: 'syringe',
+17: 'umbilical tape',
+18: 'snare',
+19: 'square retractor',
+20: 'connector',
+21: 'venous cannula',
+22: 'arterial cannula',
+23: 'dialator',
+24: 'wire cutter',
+25: 'root vent',
+26: 'yasergil',
+27: 'black suture',
+28: '3w stopcock',
+29: 'vesiloop',
+30: 'introducer sheath',
+31: 'y',
+32: 'white cardboard',
+33: 'ruler',
+34: 'guide wire',
+35: 'silicone sucker',
+36: 'plastic sucker',
+37: 'asepto syringe',
+38: 'pigtail drain',
+39: 'electrode tip',
+40: 'snare wire',
+41: 'pgw stylet',
+42: 'hemoclip'
+}
 
 #PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/Surgery_1.avi'
-PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/cut1.avi'
+PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/test_2.avi'
 # Open video file
 vidcap = cv2.VideoCapture(PATH_TO_VIDEO)
 

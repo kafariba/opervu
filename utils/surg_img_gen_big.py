@@ -18,23 +18,23 @@ import time
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(2000, 1000)
+        MainWindow.resize(4000, 2156)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.saveImageLabel = QtWidgets.QLabel(self.centralwidget)
-        self.saveImageLabel.setGeometry(QtCore.QRect(1, 1, 900, 900))
+        self.saveImageLabel.setGeometry(QtCore.QRect(1, 1, 2000, 2000))
         self.saveImageLabel.setFrameShape(QtWidgets.QFrame.Box)
         self.saveImageLabel.setFrameShadow(QtWidgets.QFrame.Raised)
         self.saveImageLabel.setLineWidth(3)
         self.saveImageLabel.setObjectName("saveImageLabel")
         self.compareImageLabel = QtWidgets.QLabel(self.centralwidget)
-        self.compareImageLabel.setGeometry(QtCore.QRect(901, 1, 900, 900))
+        self.compareImageLabel.setGeometry(QtCore.QRect(2000, 0, 2000, 2000))
         self.compareImageLabel.setFrameShape(QtWidgets.QFrame.Box)
         self.compareImageLabel.setFrameShadow(QtWidgets.QFrame.Raised)
         self.compareImageLabel.setLineWidth(3)
         self.compareImageLabel.setObjectName("compareImageLabel")
         self.saveButton = QtWidgets.QPushButton(self.centralwidget)
-        self.saveButton.setGeometry(QtCore.QRect(850, 910, 101, 41))
+        self.saveButton.setGeometry(QtCore.QRect(1964, 2030, 101, 41))
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(115, 210, 22))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -48,55 +48,69 @@ class Ui_MainWindow(object):
         self.saveButton.setPalette(palette)
         self.saveButton.setObjectName("saveButton")
         self.rewindButton = QtWidgets.QPushButton(self.centralwidget)
-        self.rewindButton.setGeometry(QtCore.QRect(740, 910, 101, 41))
+        self.rewindButton.setGeometry(QtCore.QRect(1854, 2080, 101, 41))
         self.rewindButton.setObjectName("rewindButton")
-        self.rewindButton_10 = QtWidgets.QPushButton(self.centralwidget)
-        self.rewindButton_10.setGeometry(QtCore.QRect(630, 910, 101, 41))
-        self.rewindButton_10.setObjectName("rewindButton_10")
+        self.rewindButton_1 = QtWidgets.QPushButton(self.centralwidget)
+        self.rewindButton_1.setGeometry(QtCore.QRect(1854, 2030, 101, 41))
+        self.rewindButton_1.setObjectName("rewindButton_1")
         self.rewindButton_20 = QtWidgets.QPushButton(self.centralwidget)
-        self.rewindButton_20.setGeometry(QtCore.QRect(520, 910, 101, 41))
+        self.rewindButton_20.setGeometry(QtCore.QRect(1634, 2030, 101, 41))
         self.rewindButton_20.setObjectName("rewindButton_20")
         self.rewindButton_50 = QtWidgets.QPushButton(self.centralwidget)
-        self.rewindButton_50.setGeometry(QtCore.QRect(410, 910, 101, 41))
+        self.rewindButton_50.setGeometry(QtCore.QRect(1524, 2030, 101, 41))
         self.rewindButton_50.setObjectName("rewindButton_50")
         self.rewindButton_100 = QtWidgets.QPushButton(self.centralwidget)
-        self.rewindButton_100.setGeometry(QtCore.QRect(300, 910, 101, 41))
+        self.rewindButton_100.setGeometry(QtCore.QRect(1414, 2030, 101, 41))
         self.rewindButton_100.setObjectName("rewindButton_100")
         self.forwardButton = QtWidgets.QPushButton(self.centralwidget)
-        self.forwardButton.setGeometry(QtCore.QRect(960, 910, 101, 41))
+        self.forwardButton.setGeometry(QtCore.QRect(2074, 2080, 101, 41))
         self.forwardButton.setObjectName("forwardButton")
-        self.forwardButton_10 = QtWidgets.QPushButton(self.centralwidget)
-        self.forwardButton_10.setGeometry(QtCore.QRect(1070, 910, 101, 41))
-        self.forwardButton_10.setObjectName("forwardButton_10")
+        self.forwardButton_1 = QtWidgets.QPushButton(self.centralwidget)
+        self.forwardButton_1.setGeometry(QtCore.QRect(2074, 2030, 101, 41))
+        self.forwardButton_1.setObjectName("forwardButton_1")
         self.forwardButton_20 = QtWidgets.QPushButton(self.centralwidget)
-        self.forwardButton_20.setGeometry(QtCore.QRect(1180, 910, 101, 41))
+        self.forwardButton_20.setGeometry(QtCore.QRect(2294, 2030, 101, 41))
         self.forwardButton_20.setObjectName("forwardButton_20")
         self.forwardButton_50 = QtWidgets.QPushButton(self.centralwidget)
-        self.forwardButton_50.setGeometry(QtCore.QRect(1290, 910, 101, 41))
+        self.forwardButton_50.setGeometry(QtCore.QRect(2404, 2030, 101, 41))
         self.forwardButton_50.setObjectName("forwardButton_50")
         self.forwardButton_100 = QtWidgets.QPushButton(self.centralwidget)
-        self.forwardButton_100.setGeometry(QtCore.QRect(1400, 910, 101, 41))
+        self.forwardButton_100.setGeometry(QtCore.QRect(2514, 2030, 101, 41))
         self.forwardButton_100.setObjectName("forwardButton_100")
         self.frameNumberEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.frameNumberEdit.setGeometry(QtCore.QRect(20, 910, 113, 25))
+        self.frameNumberEdit.setGeometry(QtCore.QRect(1134, 2030, 113, 25))
         self.frameNumberEdit.setObjectName("frameNumberEdit")
         self.goToFrameButton = QtWidgets.QPushButton(self.centralwidget)
-        self.goToFrameButton.setGeometry(QtCore.QRect(140, 910, 40, 25))
+        self.goToFrameButton.setGeometry(QtCore.QRect(1254, 2030, 40, 25))
         self.goToFrameButton.setObjectName("goToFrameButton")
         self.framNumberLabel = QtWidgets.QLabel(self.centralwidget)
-        self.framNumberLabel.setGeometry(QtCore.QRect(20, 940, 111, 16))
+        self.framNumberLabel.setGeometry(QtCore.QRect(1134, 2060, 111, 16))
         self.framNumberLabel.setAlignment(QtCore.Qt.AlignCenter)
-        self.framNumberLabel.setObjectName("frameNumberLabel")
+        self.framNumberLabel.setObjectName("framNumberLabel")
         self.fileNumberEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.fileNumberEdit.setGeometry(QtCore.QRect(1620, 910, 81, 21))
+        self.fileNumberEdit.setGeometry(QtCore.QRect(2734, 2030, 81, 21))
         self.fileNumberEdit.setObjectName("fileNumberEdit")
         self.fileNumberLabel = QtWidgets.QLabel(self.centralwidget)
-        self.fileNumberLabel.setGeometry(QtCore.QRect(1616, 930, 91, 20))
+        self.fileNumberLabel.setGeometry(QtCore.QRect(2730, 2050, 91, 20))
         self.fileNumberLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.fileNumberLabel.setObjectName("fileNumberLabel")
+        self.stopButton = QtWidgets.QPushButton(self.centralwidget)
+        self.stopButton.setGeometry(QtCore.QRect(1964, 2080, 101, 41))
+        palette = QtGui.QPalette()
+        brush = QtGui.QBrush(QtGui.QColor(210, 115, 22))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(210, 115, 22))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
+        brush = QtGui.QBrush(QtGui.QColor(210, 115, 22))
+        brush.setStyle(QtCore.Qt.SolidPattern)
+        palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
+        self.stopButton.setPalette(palette)
+        self.stopButton.setObjectName("stopButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 2000, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 4000, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -107,35 +121,44 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.saveButton.clicked.connect(self.save)
+        self.stopButton.clicked.connect(self.stop)
         self.rewindButton.clicked.connect(self.rewind)
-        self.rewindButton_10.clicked.connect(self.rewind10)
+        self.rewindButton_1.clicked.connect(self.rewind1)
         self.rewindButton_20.clicked.connect(self.rewind20)
         self.rewindButton_50.clicked.connect(self.rewind50)
         self.rewindButton_100.clicked.connect(self.rewind100)
         self.forwardButton.clicked.connect(self.forward)
-        self.forwardButton_10.clicked.connect(self.forward10)
+        self.forwardButton_1.clicked.connect(self.forward1)
         self.forwardButton_20.clicked.connect(self.forward20)
         self.forwardButton_50.clicked.connect(self.forward50)
         self.forwardButton_100.clicked.connect(self.forward100)
         self.goToFrameButton.clicked.connect(self.goToFrame)
+
+        self.p_timer = QtCore.QTimer()
+        self.p_timer.setInterval(100)
+        self.p_timer.timeout.connect(self.play_timer)
+        self.p_timer.start()
+
+        self.cur_cmnd = 'S'
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.saveButton.setText(_translate("MainWindow", "Save"))
         self.rewindButton.setText(_translate("MainWindow", "RWD"))
-        self.rewindButton_10.setText(_translate("MainWindow", "RWD10"))
-        self.rewindButton_20.setText(_translate("MainWindow", "RWD20"))
+        self.rewindButton_1.setText(_translate("MainWindow", "RWD1"))
+        self.rewindButton_20.setText(_translate("MainWindow", "RWD10"))
         self.rewindButton_50.setText(_translate("MainWindow", "RWD50"))
         self.rewindButton_100.setText(_translate("MainWindow", "RWD100"))
         self.forwardButton.setText(_translate("MainWindow", "FWD"))
-        self.forwardButton_10.setText(_translate("MainWindow", "FWD10"))
-        self.forwardButton_20.setText(_translate("MainWindow", "FWD20"))
+        self.forwardButton_1.setText(_translate("MainWindow", "FWD1"))
+        self.forwardButton_20.setText(_translate("MainWindow", "FWD10"))
         self.forwardButton_50.setText(_translate("MainWindow", "FWD50"))
         self.forwardButton_100.setText(_translate("MainWindow", "FWD100"))
         self.goToFrameButton.setText(_translate("MainWindow", "GO"))
         self.framNumberLabel.setText(_translate("MainWindow", "Current Frame"))
         self.fileNumberLabel.setText(_translate("MainWindow", "File Number"))
+        self.stopButton.setText(_translate("MainWindow", "Stop"))
 
     def save(self):
 
@@ -155,22 +178,37 @@ class Ui_MainWindow(object):
         self.fileNumber += 1
         self.fileNumberEdit.setText(str(self.fileNumber))
 
-        self.forward()
+        self.forward1()
+
+    def play_timer(self):
+        if self.cur_cmnd == 'F':
+            self.goPosition(1)
+        elif self.cur_cmnd == 'R':
+            if self.currentFrameNumber > self.saveFrameNumber:
+                self.goPosition(-1)
+            else:
+                self.cur_cmnd = 'S'
+
+    def stop(self):
+
+        self.cur_cmnd = 'S'
 
     def rewind(self):
+
+        if self.cur_cmnd == 'S':
+            self.cur_cmnd = 'R'
+        else:
+            self.cur_cmnd = 'S'
+
+    def rewind1(self):
 
         if self.currentFrameNumber > self.saveFrameNumber:
             self.goPosition(-1)
 
-    def rewind10(self):
+    def rewind20(self):
 
         if self.currentFrameNumber > self.saveFrameNumber + 10:
             self.goPosition(-10)
-
-    def rewind20(self):
-
-        if self.currentFrameNumber > self.saveFrameNumber + 20:
-            self.goPosition(-20)
 
     def rewind50(self):
 
@@ -184,15 +222,18 @@ class Ui_MainWindow(object):
 
     def forward(self):
 
+        if self.cur_cmnd == 'S':
+            self.cur_cmnd = 'F'
+        else:
+            self.cur_cmnd = 'S'
+
+    def forward1(self):
+
         self.goPosition(1)
-
-    def forward10(self):
-
-        self.goPosition(10)
 
     def forward20(self):
 
-        self.goPosition( 20)
+        self.goPosition(10)
 
     def forward50(self):
 
@@ -280,5 +321,5 @@ def main(args):
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
-    args = ['/home/kamiar/Videos/opervu_videos/Children_Hosp_11-6_12-2/camera_1/11_06_07_53_29/recording-1.mp4', '/home/kamiar/projects/opervu/images/11_06_07_53_29/', '1', '1']
+    args = ['/home/kamiar/Videos/opervu_videos/Children_Hosp_11-6_12-2/camera_2/11_06_07_53_29/recording-5.mp4', '/home/kamiar/projects/opervu/images/11_06_07_53_29/', '1', '1']
     main(args)

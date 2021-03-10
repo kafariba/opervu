@@ -8,11 +8,12 @@ import xml.etree.ElementTree as ET
 def xml_to_csv(path):
     xml_list = []
     try:
-        for xml_file in glob.glob(path + '/*.xml'):
+        for xml_file in glob.glob(path + '*.xml'):
+            #print(xml_file)
             tree = ET.parse(xml_file)
             root = tree.getroot()
             for member in root.findall('object'):
-                value = ('/home/kamiar/projects/opervu/images/labeled/' + root.find('filename').text,
+                value = (path + root.find('filename').text,
                         int(member[4][0].text),
                         int(member[4][1].text),
                         int(member[4][2].text),

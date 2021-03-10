@@ -52,7 +52,8 @@ model = models.load_model(model_path, backbone_name='resnet50')
 #print(model.summary())
 
 # load label to names mapping for visualization purposes
-labels_to_names = {0: 'forceps',
+labels_to_names = {
+0: 'forceps',
 1: 'clamp',
 2: 'scalpel',
 3: 'sponge',
@@ -67,7 +68,8 @@ labels_to_names = {0: 'forceps',
 12: 'bovie'}
 
 # name to label mapping
-names_to_labels = {'forceps': 0,
+names_to_labels = {
+'forceps': 0,
 'clamp': 1,
 'scalpel': 2,
 'sponge': 3,
@@ -132,11 +134,13 @@ incision_det_count = 0
 # flag to indicate obstruction of incision
 incision_blocked = False
 
-# init incision box
-incision_box = np.array([0, 0, 0, 0])
+# create a numpy array of 100x4 and load it with nan for incision coordinates queue
+tmp_lst = []
+for i in range(100):
+    tmp_lst.append([np.nan, np.nan, np.nan, np.nan])
+incision_list = np.array(tmp_lst)
 
-# incision is the largest of the past 300 detections
-incision_q = deque(maxlen=100)
+incision_list_ptr = 0
 
 # SIs that are tracked
 tracked_SIs = [names_to_labels['forceps'], names_to_labels['clamp'], names_to_labels['scalpel'],
@@ -182,7 +186,7 @@ LOW_PIX_ENTER = 350
 HIGH_PIX_ENTER = 1700
 
 #PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/Surgery_1.avi'
-PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/cut1.avi'
+PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/test_1.avi'
 # Open video file
 vidcap = cv2.VideoCapture(PATH_TO_VIDEO)
 
@@ -505,11 +509,12 @@ def track_SIs():
             continue
 
         # check for blockage of incision
-        if incision_det_count == 10 and (si == names_to_labels['obstruction'] or
-                                    si == names_to_labels['glove']):
+        if incision_det_count == 10 and (si in [names_to_labels['obstruction'],
+                                                names_to_labels['glove'],
+                                                names_to_labels['gauze']):
             if len(frames[frames_ptr][si]) > 0:
                 for obst in frames[frames_ptr][si]:
-                    if calc_ioa(incision_box, obst['box']) == 1:
+                    if calc_ioa(incision_box.tolist(), obst['box']) > 0.9:
                         incision_blocked = True
 
         si_len = len(frames[frames_ptr][si])
@@ -520,7 +525,7 @@ def track_SIs():
                 frames[frames_ptr][si].pop(1)
             elif calc_ioa(frames[frames_ptr][si][1]['box'], frames[frames_ptr][si][0]['box']) > 0.8:
                 frames[frames_ptr][si].pop(0)
-        elif si_len > 3:
+        elif si_len >= 3:
             ioa_pair = []
             for i in range(si_len):
                 for j in range(i+1, si_len):
@@ -805,18 +810,31 @@ def track_SIs():
                 frames[frames_ptr][si].pop(items_to_pop[i])
             items_to_pop.clear()
 
-    # do this after tracking to check for obstruction
+    # do this after tracking to update imcision_box
     si = names_to_labels['incision']
     if len(frames[frames_ptr][si]) > 0:
         if incision_det_count < 10:
             incision_det_count += 1
-        incision_q.append(frames[frames_ptr][si][0]['box'])
+        incision_list[incision_list_ptr] = (frames[frames_ptr][si][0]['box'])
+        incision_list_ptr += 1
+        if incision_list_ptr >= 100:
+            incision_list_ptr = 0
+        incision_box = np.nanmax(incision_list, axis=0)
+        frames[frames_ptr][si][0]['box'] = incision_box.tolist()
     else:
-        # no incision detected, if not blocked decrement count & pop q
+        # no incision detected, if not blocked decrement count & update buf
         if not incision_blocked:
             if incision_det_count > 0:
                 incision_det_count -= 1
-                incision_q.pop()
+            else:
+                incision_list[incision_list_ptr] = [np.nan, np.nan, np.nan, np.nan]
+                incision_list_ptr += 1
+                if incision_list_ptr >= 100:
+                    incision_list_ptr = 0
+                incision_box = np.nanmax(incision_list, axis=0)
+                if incision_box.max() != np.nan:
+                    frames[frames_ptr][si][0]['box'] = incision_box.tolist()
+
 
 
 def quit():

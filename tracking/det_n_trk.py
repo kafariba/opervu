@@ -57,7 +57,8 @@ model = models.load_model(model_path, backbone_name='resnet50')
 #print(model.summary())
 
 # load label to names mapping for visualization purposes
-labels_to_names = {0: 'forceps',
+labels_to_names = {
+0: 'forceps',
 1: 'clamp',
 2: 'scalpel',
 3: 'sponge',
@@ -69,10 +70,42 @@ labels_to_names = {0: 'forceps',
 9: 'glove',
 10: 'incision',
 11: 'obstruction',
-12: 'bovie'}
+12: 'bovie',
+13: 'round retractor',
+14: 'saw',
+15: 'sternal retractor',
+16: 'syringe',
+17: 'umbilical tape',
+18: 'snare',
+19: 'square retractor',
+20: 'connector',
+21: 'venous cannula',
+22: 'arterial cannula',
+23: 'dialator',
+24: 'wire cutter',
+25: 'root vent',
+26: 'yasergil',
+27: 'black suture',
+28: '3w stopcock',
+29: 'vesiloop',
+30: 'introducer sheath',
+31: 'y',
+32: 'white cardboard',
+33: 'ruler',
+34: 'guide wire',
+35: 'silicone sucker',
+36: 'plastic sucker',
+37: 'asepto syringe',
+38: 'pigtail drain',
+39: 'electrode tip',
+40: 'snare wire',
+41: 'pgw stylet',
+42: 'hemoclip'
+}
 
 # name to label mapping
-names_to_labels = {'forceps': 0,
+names_to_labels = {
+'forceps': 0,
 'clamp': 1,
 'scalpel': 2,
 'sponge': 3,
@@ -84,17 +117,49 @@ names_to_labels = {'forceps': 0,
 'glove': 9,
 'incision': 10,
 'obstruction': 11,
-'bovie': 12}
+'bovie': 12,
+'round retractor': 13,
+'saw': 14,
+'sternal retractor': 15,
+'syringe': 16,
+'umbilical tape': 17,
+'snare': 18,
+'square retractor': 19,
+'connector': 20,
+'venous cannula': 21,
+'arterial cannula': 22,
+'dialator': 23,
+'wire cutter': 24,
+'root vent': 25,
+'yasergil': 26,
+'black suture': 27,
+'3w stopcock': 28,
+'vesiloop': 29,
+'introducer sheath': 30,
+'y': 31,
+'white cardboard': 32,
+'ruler': 33,
+'guide wire': 34,
+'silicone sucker': 35,
+'plastic sucker': 36,
+'asepto syringe': 37,
+'pigtail drain': 38,
+'electrode tip': 39,
+'snare wire': 40,
+'pgw stylet': 41,
+'hemoclip': 42
+}
 
 # use this label order to detect objects, address si dependency
-si_track_order = [names_to_labels['obstruction'], names_to_labels['glove'], names_to_labels['bovie'], names_to_labels['incision'],
+si_track_order = [names_to_labels['obstruction'], names_to_labels['glove'], names_to_labels['bovie'], names_to_labels['gauze'],
                    names_to_labels['forceps'], names_to_labels['clamp'], names_to_labels['scalpel'], names_to_labels['needle holder'],
-                   names_to_labels['needle'], names_to_labels['sucker'], names_to_labels['sponge'], names_to_labels['gauze'],
+                   names_to_labels['needle'], names_to_labels['sucker'], names_to_labels['sponge'], names_to_labels['incision'],
                    names_to_labels['woods pack']]
 
 
 # minimum confidence score for each detected label
-min_SI_scores = {0: 0.5,
+min_SI_scores = {
+0: 0.5,
 1: 0.5,
 2: 0.45,
 3: 0.5,
@@ -106,10 +171,42 @@ min_SI_scores = {0: 0.5,
 9: 0.7,
 10: 0.78,
 11: 0.72,
-12: 0.6}
+12: 0.6,
+13: 0.5,
+14: 0.5,
+15: 0.5,
+16: 0.5,
+17: 0.5,
+18: 0.5,
+19: 0.5,
+20: 0.5,
+21: 0.5,
+22: 0.5,
+23: 0.5,
+24: 0.5,
+25: 0.5,
+26: 0.5,
+27: 0.5,
+28: 0.5,
+29: 0.5,
+30: 0.5,
+31: 0.5,
+32: 0.5,
+33: 0.5,
+34: 0.5,
+35: 0.5,
+36: 0.5,
+37: 0.5,
+38: 0.5,
+39: 0.5,
+40: 0.5,
+41: 0.5,
+42: 0.5
+}
 
 # max si velocity
-max_SI_vel = {0: [0,0],
+max_SI_vel = {
+0: [0,0],
 1: [0,0],
 2: [0,0],
 3: [0,0],
@@ -121,32 +218,74 @@ max_SI_vel = {0: [0,0],
 9: [0,0],
 10: [0,0],
 11: [0,0],
-12: [0,0]}
+12: [0,0],
+13: [0,0],
+14: [0,0],
+15: [0,0],
+16: [0,0],
+17: [0,0],
+18: [0,0],
+19: [0,0],
+20: [0,0],
+21: [0,0],
+22: [0,0],
+23: [0,0],
+24: [0,0],
+25: [0,0],
+26: [0,0],
+27: [0,0],
+28: [0,0],
+29: [0,0],
+30: [0,0],
+31: [0,0],
+32: [0,0],
+33: [0,0],
+34: [0,0],
+35: [0,0],
+36: [0,0],
+37: [0,0],
+38: [0,0],
+39: [0,0],
+40: [0,0],
+41: [0,0],
+42: [0,0]
+}
 
 # init circulare frame cotainer
 frames = []
 frames_ptr = 0
 prev_frames_ptr = 0
-frame = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]}
+#frame = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[],
+#         13:[], 14:[], 15:[], 16:[], 17:[], 18:[], 19:[], 20:[], 21:[], 22:[],
+#         23:[], 24:[], 25:[], 26:[], 27:[], 28:[], 29:[], 30:[], 31:[], 32:[],
+#         33:[], 34:[], 35:[], 36:[], 37:[], 38:[], 39:[], 40:[], 41:[], 42:[]
+#         }
+frame = {}
 for i in range(10):
     frames.append(frame)
-
-# init incision detection count, if > 10, draw it, else not
-incision_det_count = 0
 
 # flag to indicate obstruction of incision
 incision_blocked = False
 
+# flag to indicate incision active
+incision_active = False
+
 # init incision box
 incision_box = np.array([0, 0, 0, 0])
 
-# incision is the largest of the past 300 detections
-incision_q = deque(maxlen=100)
+# create a numpy array of 100x4 and load it with nan for incision coordinates queue
+tmp_lst = []
+for i in range(100):
+    tmp_lst.append([np.nan, np.nan, np.nan, np.nan])
+incision_list = np.array(tmp_lst)
+
+incision_list_ptr = 0
 
 # SIs that are tracked
 tracked_SIs = [names_to_labels['forceps'], names_to_labels['clamp'], names_to_labels['scalpel'],
             names_to_labels['needle'], names_to_labels['needle holder'], names_to_labels['sucker'],
-            names_to_labels['gauze'], names_to_labels['bovie']]
+            names_to_labels['gauze'], names_to_labels['bovie'], names_to_labels['incision'],
+            names_to_labels['round retractor']]
 
 
 # ID counter for tracked SI
@@ -187,7 +326,7 @@ LOW_PIX_ENTER = 350
 HIGH_PIX_ENTER = 1700
 
 #PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/Surgery_1.avi'
-PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/cut1.avi'
+PATH_TO_VIDEO = '/home/kamiar/Videos/opervu_videos/Children_Hosp_9-18/test_1.avi'
 # Open video file
 vidcap = cv2.VideoCapture(PATH_TO_VIDEO)
 
@@ -207,8 +346,21 @@ def dashed_rect(img, pt1, pt2, color, thickness=4):
             cv2.line(img,(pt2[0], yo), (pt2[0], y), color, thickness)
         yo = y
 
+def calc_intersect(box_a, box_b):
+    # x & y of intersection rect.
+    x_a = max(box_a[0], box_b[0])
+    y_a = max(box_a[1], box_b[1])
+    x_b = min(box_a[2], box_b[2])
+    y_b = min(box_a[3], box_b[3])
+
+    #cal intersection area
+    return max(0, x_b - x_a) * max(0, y_b - y_a)
+
+
 def detect_and_predict(c_q, s_q):
     global frames, frames_ptr, prev_frames_ptr, frameNumber
+    global incision_box, incision_active
+
     cmnd = IDLE_CMND
 
     while True:
@@ -240,7 +392,11 @@ def detect_and_predict(c_q, s_q):
                 boxes /= scale
 
                 # init SI containers for this frame
-                frame = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[]}
+                frame = {0:[], 1:[], 2:[], 3:[], 4:[], 5:[], 6:[], 7:[], 8:[], 9:[], 10:[], 11:[], 12:[],
+                         13:[], 14:[], 15:[], 16:[], 17:[], 18:[], 19:[], 20:[], 21:[], 22:[],
+                         23:[], 24:[], 25:[], 26:[], 27:[], 28:[], 29:[], 30:[], 31:[], 32:[],
+                         33:[], 34:[], 35:[], 36:[], 37:[], 38:[], 39:[], 40:[], 41:[], 42:[]
+                         }
 
                 # visualize detections
                 for box, score, label in zip(boxes[0], scores[0], labels[0]):
@@ -284,36 +440,50 @@ def detect_and_predict(c_q, s_q):
 
                 for si in frames[frames_ptr]:
                     for si_item in frames[frames_ptr][si]:
-
+                        in_state = False
                         if si in tracked_SIs:
+
+                            if si != names_to_labels['incision']:
+                                if incision_active:
+                                    if calc_intersect(si_item['box'], incision_box.tolist()) > 0:
+                                        in_state = True
+                                        pred_info['in'] += "X\n"
+                                if si_item['cov'] != 0:
+                                    pred_info['cov'] += "X\n"
+                                else:
+                                    pred_info['cov'] += " \n"
+                                pred_info['si'] += "{}\n".format(labels_to_names[si])
+                                pred_info['id'] += "{}\n".format(si_item['id'])
+                                # pred_info['id'] += "{}/{}\n".format(si_item['id'], si_item['trk_cnt'])
+                                # pred_info['box'] += "{:4d},{:4d},{:4d},{:4d}\n".format(si_item['box'][0],
+                                        # si_item['box'][1], si_item['box'][2], si_item['box'][3])
+                                # pred_info['scr'] += "{:3d}\n".format(si_item['scr'])
+                                pred_info['cen'] += "{:.1f},{:.1f}\n".format(si_item['cen'][0]/2045, si_item['cen'][1]/2045)
+                                # pred_info['vel'] += "{:.0f},{:.0f}/{:.0f},{:.0f}\n".format(si_item['vel'][0], si_item['vel'][1],
+                                                                                        # si_item['accel'][0], si_item['accel'][1])
+                                # pred_info['misc'] += "{},{}/{}/{}/{}/{}\n".format(si_item['cen_pred'][0], si_item['cen_pred'][1],
+                                                        # si_item['link_id'], si_item['link_cnt'], si_item['adj_glove'], si_item['adj_obs'])
+
                             # draw the box and label the tracked SI
                             color = label_color(si)
                             if si_item['cov'] != 0:
                                 dashed_rect(draw, (si_item['box'][0], si_item['box'][1]), (si_item['box'][2], si_item['box'][3]), color, 3)
+                            elif in_state:
+                                cv2.rectangle(draw, (si_item['box'][0], si_item['box'][1]), (si_item['box'][2], si_item['box'][3]), color, 10)
+                                cv2.putText(draw, "IN", (int((si_item['box'][0] + si_item['box'][2]) / 2) - 10,
+                                                         int((si_item['box'][1] + si_item['box'][3]) / 2) - 10),
+                                            cv2.FONT_HERSHEY_SIMPLEX, 1, color, 10, cv2.LINE_AA)
                             else:
                                 cv2.rectangle(draw, (si_item['box'][0], si_item['box'][1]), (si_item['box'][2], si_item['box'][3]), color, 3)
 
-                            caption = "{}:{}".format(si_item['id'], labels_to_names[si])
+
+                            if si == names_to_labels['incision']:
+                                caption = "{}".format(labels_to_names[si])
+                            else:
+                                caption = "{}:{}".format(si_item['id'], labels_to_names[si])
                             #cv2.putText(draw, caption, (si_item['box'][0], si_item['box'][1] - 10), cv2.FONT_HERSHEY_PLAIN, 6, (0, 0, 0), 2)
                             cv2.putText(draw, caption, (si_item['box'][0], si_item['box'][1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 4, cv2.LINE_AA)
 
-
-                            pred_info['in'] += "{}\n".format(si_item['in'])
-                            if si_item['cov'] != 0:
-                                pred_info['cov'] += "X\n"
-                            else:
-                                pred_info['cov'] += " \n"
-                            pred_info['si'] += "{}\n".format(labels_to_names[si])
-                            pred_info['id'] += "{}\n".format(si_item['id'])
-                            # pred_info['id'] += "{}/{}\n".format(si_item['id'], si_item['trk_cnt'])
-                            # pred_info['box'] += "{:4d},{:4d},{:4d},{:4d}\n".format(si_item['box'][0],
-                                    # si_item['box'][1], si_item['box'][2], si_item['box'][3])
-                            # pred_info['scr'] += "{:3d}\n".format(si_item['scr'])
-                            pred_info['cen'] += "{:.1f},{:.1f}\n".format(si_item['cen'][0]/2045, si_item['cen'][1]/2045)
-                            # pred_info['vel'] += "{:.0f},{:.0f}/{:.0f},{:.0f}\n".format(si_item['vel'][0], si_item['vel'][1],
-                                                                                    # si_item['accel'][0], si_item['accel'][1])
-                            # pred_info['misc'] += "{},{}/{}/{}/{}/{}\n".format(si_item['cen_pred'][0], si_item['cen_pred'][1],
-                                                    # si_item['link_id'], si_item['link_cnt'], si_item['adj_glove'], si_item['adj_obs'])
 
 
                 frames_ptr += 1
@@ -537,6 +707,8 @@ def ewa(v, t):
 
 def track_SIs():
     global id_counter, frames, frames_ptr, incision_det_count, prev_frames_ptr, frameNumber
+    global incision_list, incision_list_ptr, old_incision_frame, incision_active, incision_box
+
     vel_offset = 0
 
     if frameNumber == 0:
@@ -551,17 +723,45 @@ def track_SIs():
     incision_blocked = False
 
     for si in si_track_order:
-        # skip incision & obstruction, not tracked
-        if si == names_to_labels['incision']:
-            continue
-
-        # check for blockage of incision
-        if incision_det_count == 10 and (si == names_to_labels['obstruction'] or
-                                    si == names_to_labels['glove']):
+        # if incision detected earlier, check for it being blocked now
+        if incision_active and (si in [names_to_labels['obstruction'],
+                                                names_to_labels['glove'],
+                                                names_to_labels['gauze']]):
             if len(frames[frames_ptr][si]) > 0:
                 for obst in frames[frames_ptr][si]:
-                    if calc_ioa(incision_box, obst['box']) == 1:
+                    if calc_ioa(incision_box.tolist(), obst['box']) > 0.9:
                         incision_blocked = True
+
+        if si == names_to_labels['incision']:
+            # do this after tracking to update imcision_box
+            if len(frames[frames_ptr][si]) > 0:
+                incision_list[incision_list_ptr] = frames[frames_ptr][si][0]['box']
+                incision_list_ptr += 1
+                if incision_list_ptr >= 100:
+                    incision_list_ptr = 0
+            else:
+                # no incision detected, if not blocked decrement count & update buf
+                if not incision_blocked:
+                    if incision_active:
+                        incision_list_ptr -= 1
+                        if incision_list_ptr < 0:
+                            incision_list_ptr = 100
+                        incision_list[incision_list_ptr] = [np.nan, np.nan, np.nan, np.nan]
+
+            incision_box = np.nanmax(incision_list, axis=0)
+            if not math.isnan(incision_box.max()):
+                if not incision_active:
+                    incision_active = True
+                if len(frames[frames_ptr][si]) > 0:
+                    frames[frames_ptr][si][0]['box'] = incision_box.astype(int).tolist()
+                    old_incision_frame = frames[frames_ptr][si]
+                else:
+                    frames[frames_ptr][si] = old_incision_frame
+                    frames[frames_ptr][si][0]['box'] = incision_box.astype(int).tolist()
+            else:
+                    incision_active = False
+
+            continue  # done with incision
 
         si_len = len(frames[frames_ptr][si])
         # check for spurious si detection
@@ -855,18 +1055,6 @@ def track_SIs():
                 frames[frames_ptr][si].pop(items_to_pop[i])
             items_to_pop.clear()
 
-    # do this after tracking to check for obstruction
-    si = names_to_labels['incision']
-    if len(frames[frames_ptr][si]) > 0:
-        if incision_det_count < 10:
-            incision_det_count += 1
-        incision_q.append(frames[frames_ptr][si][0]['box'])
-    else:
-        # no incision detected, if not blocked decrement count & pop q
-        if not incision_blocked:
-            if incision_det_count > 0:
-                incision_det_count -= 1
-                incision_q.pop()
 
 
 def quit():

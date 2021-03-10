@@ -1,5 +1,5 @@
 /home/kamiar/keras-retinanet/keras_retinanet/bin/train.py\
-            --steps 4998 --snapshot-path '/home/kamiar/projects/opervu/snapshots'\
+            --steps 16139 --snapshot-path '/home/kamiar/projects/opervu/snapshots'\
             --multi-gpu 2 --multi-gpu-force\
             --batch-size 2\
             --tensorboard-dir '/home/kamiar/projects/opervu/logs'\
